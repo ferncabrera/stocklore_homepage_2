@@ -1,0 +1,78 @@
+---
+
+---
+
+<nav class="grid grid-cols-2 bg-stone-800/75 py-5">
+  <!-- Navbar Logo -->
+  <div class="px-5 pb-2 flex md:px-20 text-neutral-400">
+    Stocklore Logo Here
+  </div>
+  <!-- Navbar 3-bar drop down menu button that shows on mobile -->
+  <div class="flex justify-end pr-6 pb-2 md:hidden">
+    <svg
+      id="bar-dropdown"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6 text-white"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+    </svg>
+  </div>
+  <!-- Navbar Links -->
+  <div
+    class="overflow-hidden md:flex md:flex-wrap flex flex-col md:flex-row md:overflow-visible"
+    id="navbar-links-wrapper"
+  >
+    <span class="px-5 py-2 text-neutral-300 link">
+      <a href="/about">About</a>
+    </span>
+
+    <span class="px-5 py-2 text-neutral-300 link">
+      <a href="/docs">Documentation</a>
+    </span>
+
+    <span class="px-5 py-2 text-neutral-300 link">
+      <a href="/blog">Blog</a>
+    </span>
+  </div>
+</nav>
+
+<!-- Styling -->
+<style lang="scss">
+  @use "../../styles/colors.scss";
+
+  .link {
+    :hover {
+      color: colors.$link-hover;
+    }
+  }
+
+  #navbar-links-wrapper {
+    max-height: 0;
+    transition: all 0.5s ease-in-out;
+  }
+
+  #navbar-links-wrapper.active {
+    opacity: 1;
+    max-height: 200px; /* Adjust based on the content height */
+  }
+</style>
+
+<!-- Javascript -->
+<script>
+  // We need this add event listener so that our script runs only after the DOM content is loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    const dropDownButton = document.getElementById("bar-dropdown")!;
+    const navBarLinksWrapper = document.getElementById("navbar-links-wrapper")!;
+    // Listen to when the drop down gets clicked on
+    dropDownButton.addEventListener("click", () => {
+      navBarLinksWrapper.classList.toggle("active");
+    });
+  });
+</script>
