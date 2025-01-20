@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Button from "../components/astroComponents/Button.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -8,19 +9,24 @@ import MainLayout from "../layouts/MainLayout.astro";
 <MainLayout>
   <!-- background -->
   <div id="background-styling" class="absolute hidden md:flex"></div>
-  <!-- content -->
+  <!-- Top Content -->
   <div class="container pt-8 mt-16 mx-auto">
     <section class="grid grid-cols-2 mx-12 px-12">
       <div
         class="col-span-2 py-6 flex flex-wrap items-center justify-center sm:col-span-1 sm:block"
       >
-        <h1 class="text-4xl text-neutral-300 font-bold">
+        <h1 class="text-7xl text-neutral-300 font-bold">
           The Simple Tool for Your Business
         </h1>
-        <h2 class="text-2xl text-neutral-400 font-medium pt-4">
+        <h2 class="text-3xl text-neutral-400 font-medium pt-4">
           Stocklore will easily keep track of your business metrics and
           operations.
         </h2>
+        <span class="flex justify-center pt-9">
+          <Button class="bg-gradient-to-r from-stocklore-primary to-fuchsia-500 text-neutral-300 text-lg font-bold shiny"
+            >Get Started
+          </Button>
+        </span>
       </div>
       <div
         class="col-span-2 py-6 sm:col-span-1 flex items-center justify-center"
@@ -57,6 +63,10 @@ import MainLayout from "../layouts/MainLayout.astro";
         </span>
       </div>
     </section>
+    <!-- Features Content -->
+     <section>
+      
+     </section>
   </div>
 </MainLayout>
 
@@ -72,8 +82,18 @@ import MainLayout from "../layouts/MainLayout.astro";
     width: 100%;
     z-index: -1;
     opacity: 0.4;
- 
-    background: radial-gradient(ellipse at 68% 40%, colors.$primary , colors.$stone-700, transparent);
-    mask-image: radial-gradient(ellipse 70% 70% at 75% 40%, colors.$stone-700 20%, colors.$stone-700 50%, colors.$stone-700);
+
+    background: radial-gradient(
+      ellipse at 68% 40%,
+      colors.$primary,
+      colors.$stone-700,
+      transparent
+    );
+    mask-image: radial-gradient(
+      ellipse 70% 70% at 75% 40%,
+      colors.$stone-700 20%,
+      colors.$stone-700 50%,
+      colors.$stone-700
+    );
   }
 </style>
