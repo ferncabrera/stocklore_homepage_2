@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Button from "../components/astroComponents/Button.astro";
+import DarkCard from "../components/astroComponents/DarkCard.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -23,7 +24,8 @@ import Button from "../components/astroComponents/Button.astro";
           operations.
         </h2>
         <span class="flex justify-center pt-9">
-          <Button class="bg-gradient-to-r from-stocklore-primary to-fuchsia-500 text-neutral-300 text-lg font-bold shiny"
+          <Button
+            class="bg-gradient-to-r from-stocklore-primary to-fuchsia-500 text-neutral-300 text-lg font-bold shiny"
             >Get Started
           </Button>
         </span>
@@ -64,36 +66,70 @@ import Button from "../components/astroComponents/Button.astro";
       </div>
     </section>
     <!-- Features Content -->
-     <section>
-      
-     </section>
+    <section class="mt-56 mb-12">
+      <div class="grid grid-cols-2 flex">
+        <DarkCard class="mr-6">
+          <h3 slot="header"><span class="text-stocklore-secondary">Track</span> Inventory</h3>
+          <div class="grid grid-cols-2 flex">
+            <span class="flex flex-wrap pr-3">
+              <p>Make sure your products and services are kept in check.
+                Keep accurate records of what gets sent in, what gets sent out,
+                and how much you have.
+              </p>
+            </span>
+            <p>Image here</p>
+          </div>
+        </DarkCard>
+
+        <DarkCard class="ml-6">
+          <div class="grid grid-cols-2">
+            <div>
+              <h3 class="text-3xl text-neutral-300">
+                Set Your Own <span class="text-stocklore-secondary">Custom Analytics</span> in One Place
+              </h3>
+              <p class="pt-3">Track your orders, sales, and stock activity.</p>
+            </div>
+            <p>Image here</p>
+          </div>
+        </DarkCard>
+      </div>
+
+      <DarkCard class="mt-12">
+        <h3 slot="header" class="flex justify-center">Rich Features</h3>
+        <div class="mt-6 grid grid-cols-3">
+          <p>Sign up employees</p>
+          <p>Support for importing and exporting data - Generate Invoices</p>
+          <p>Multi-organization role, host more than one business</p>
+        </div>
+      </DarkCard>
+    </section>
   </div>
+
+  <!-- styles -->
+  <style lang="scss">
+    @use "../styles/colors.scss";
+
+    #background-styling {
+      top: 7%;
+      left: 0;
+      right: 0;
+      bottom: 20%;
+      width: 100%;
+      z-index: -1;
+      opacity: 0.4;
+
+      background: radial-gradient(
+        ellipse at 68% 40%,
+        colors.$primary,
+        colors.$stone-700,
+        transparent
+      );
+      mask-image: radial-gradient(
+        ellipse 70% 70% at 75% 40%,
+        colors.$stone-700 20%,
+        colors.$stone-700 50%,
+        colors.$stone-700
+      );
+    }
+  </style>
 </MainLayout>
-
-<!-- styles -->
-<style lang="scss">
-  @use "../styles/colors.scss";
-
-  #background-styling {
-    top: 7%;
-    left: 0;
-    right: 0;
-    bottom: 20%;
-    width: 100%;
-    z-index: -1;
-    opacity: 0.4;
-
-    background: radial-gradient(
-      ellipse at 68% 40%,
-      colors.$primary,
-      colors.$stone-700,
-      transparent
-    );
-    mask-image: radial-gradient(
-      ellipse 70% 70% at 75% 40%,
-      colors.$stone-700 20%,
-      colors.$stone-700 50%,
-      colors.$stone-700
-    );
-  }
-</style>
