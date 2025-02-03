@@ -1,11 +1,11 @@
 ---
-
+import stockloreLogoWithText from "../../assets/svg/SLTxt.svg";
 ---
 
 <nav class="grid grid-cols-2 bg-stone-800/75 py-5">
   <!-- Navbar Logo -->
   <div class="px-5 pb-2 flex md:px-20 text-neutral-400">
-    Stocklore Logo Here
+    <img class="stockloreLogo" src={stockloreLogoWithText.src} alt="Stocklore Logo">
   </div>
   <!-- Navbar 3-bar drop down menu button that shows on mobile -->
   <div class="flex justify-end pr-6 pb-2 md:hidden">
@@ -51,6 +51,11 @@
     :hover {
       color: colors.$link-hover;
     }
+  }
+
+  .stockloreLogo {
+    width: 100px;
+    height: 60px;
   }
 
   #navbar-links-wrapper {
