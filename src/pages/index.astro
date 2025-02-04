@@ -103,6 +103,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
         <h3 slot="header" class="flex justify-center">Rich Features</h3>
         <div class="mt-6 grid grid-cols-3">
           <div>
+            <h4 class="text-3xl flex justify-center mb-3">Add Employees</h4>
             <span class="flex justify-center add-user-section">
               <svg
                 fill="#d4d4d4"
@@ -133,15 +134,33 @@ import stockloreSvg from "../assets/svg/SL.svg";
                 ></svg
               >
             </span>
-            <p>Sign up employees</p>
+            <ul class="list-disc ml-16 mt-3">
+              <li>Add multiple employees to access your organization.</li>
+              <li>Grant different permissions to your employees.</li>
+              <li>Track the actions of each account.</li>
+            </ul>
           </div>
           <div>
+            <h4 class="text-3xl flex justify-center mb-3">
+              Import and Export Data
+            </h4>
             <span class="export-section">
-              <Image class={"export"} src={invoices} alt={"Purchase and Sale invoices."} />
+              <Image
+                class={"export"}
+                src={invoices}
+                alt={"Purchase and Sale invoices."}
+              />
             </span>
-            <p>Support for importing and exporting data - Generate Invoices</p>
+            <ul class="list-disc ml-16 mt-3">
+              <li>Import data from excel spreadsheets or workbooks.</li>
+              <li>Export data in a PDF format or spreadsheet.</li>
+              <li>Generate professional looking Purchase Order and Sale invoices.</li>
+            </ul>
           </div>
           <div>
+            <h4 class="text-3xl flex justify-center mb-3">
+              Multi-Organization Support
+            </h4>
             <span class="multi-section">
               <Image
                 class="multi-organization"
@@ -150,7 +169,11 @@ import stockloreSvg from "../assets/svg/SL.svg";
                 quality={"high"}
               />
             </span>
-            <p>Multi-organization role, host more than one business</p>
+            <ul class="list-disc ml-16 mt-3">
+              <li>Host multiple businesses on one account.</li>
+              <li>Get invited to other organizations as an admin or employee.</li>
+              <li>Access both your own and other people's organizations.</li>
+            </ul>
           </div>
         </div>
       </DarkCard>
@@ -353,7 +376,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
     .export {
       height: 90%;
     }
-    
+
     .multi-section {
       display: flex;
       margin-right: 10%;
@@ -377,5 +400,5 @@ import stockloreSvg from "../assets/svg/SL.svg";
       border-radius: 10px;
       height: 70%;
     }
-    </style>
+  </style>
 </MainLayout>
