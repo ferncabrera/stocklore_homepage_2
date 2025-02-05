@@ -2,26 +2,26 @@
 import "@fontsource/roboto";
 
 import Navbar from "../components/astroComponents/Navbar.astro";
+import Footer from "../components/astroComponents/Footer.astro";
 ---
 
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>stocklore</title>
-</head>
-<body id='special' class="bg-stone-700 font-roboto">
-	<Navbar/>
-	<main>
-		<slot>Page Content Here</slot>
-	</main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stocklore</title>
+  </head>
+  <body id="special" class="bg-stone-700 font-roboto">
+    <Navbar />
+    <main>
+      <slot>Page Content Here</slot>
+    </main>
+    <footer>
+      <Footer />
+    </footer>
+  </body>
 </html>
 
-<style>
-	
-</style>
+<style></style>
 
-<script>
-	
-</script>
+<script></script>
