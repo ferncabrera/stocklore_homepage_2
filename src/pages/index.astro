@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Button from "../components/astroComponents/Button.astro";
 import DarkCard from "../components/astroComponents/DarkCard.astro";
+import DropDown from "../components/astroComponents/DropDown.astro";
 
 // Images
 import { Image } from "astro:assets";
@@ -154,7 +155,9 @@ import stockloreSvg from "../assets/svg/SL.svg";
             <ul class="list-disc ml-16 mt-3">
               <li>Import data from excel spreadsheets or workbooks.</li>
               <li>Export data in a PDF format or spreadsheet.</li>
-              <li>Generate professional looking Purchase Order and Sale invoices.</li>
+              <li>
+                Generate professional looking Purchase Order and Sale invoices.
+              </li>
             </ul>
           </div>
           <div>
@@ -171,7 +174,9 @@ import stockloreSvg from "../assets/svg/SL.svg";
             </span>
             <ul class="list-disc ml-16 mt-3">
               <li>Host multiple businesses on one account.</li>
-              <li>Get invited to other organizations as an admin or employee.</li>
+              <li>
+                Get invited to other organizations as an admin or employee.
+              </li>
               <li>Access both your own and other people's organizations.</li>
             </ul>
           </div>
@@ -319,6 +324,81 @@ import stockloreSvg from "../assets/svg/SL.svg";
           > page to learn more about what Stocklore can do.
         </h4>
       </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section class="mb-12">
+      <DarkCard>
+        <h3 slot="header" class="flex justify-center pb-8">
+          Frequently Asked Questions <span class=" pl-2 text-stocklore-secondary">
+            (FAQ)
+          </span>
+        </h3>
+        <DropDown id="1">
+          <h5 slot="title" class="text-neutral-300 text-2xl">
+            What makes Stocklore different from other IMS/ERS software?
+          </h5>
+          <p class="pb-3 text-xl" slot="content">
+            Our app is intended for use by small to medium-sized businesses.
+            Lots of other software is overly expensive, has a big learning
+            curve, and can be intimidating to set up. Stocklore is designed to
+            be as simple as possible so that you can start filling and using
+            data within the same hour you decide to integrate with us.
+          </p>
+        </DropDown>
+        <DropDown id="2">
+          <h5 slot="title" class="text-neutral-300 text-2xl">
+            How much does it cost?
+          </h5>
+          <p class="pb-3 text-xl" slot="content">
+            We are actually in <span class="font-bold">Open Beta</span>! In
+            other words, it's <span class="text-stocklore-secondary">FREE</span>
+            right now! Stocklore is quite new and is designed by the latest technology
+            making it a super robust and clean app. However, because it is so new,
+            there are still some small occasional bugs and additions being worked
+            on; therefore, we do not want to charge anything. In return, we just
+            simply want you to use it and let us know about any bugs or glitches,
+            as well as whether you like the app or not :)
+          </p>
+        </DropDown>
+        <DropDown id="3">
+          <h5 slot="title" class="text-neutral-300 text-2xl">
+            How can I start using Stocklore?
+          </h5>
+          <p class="pb-3 text-xl" slot="content">
+            Simply click on the get started button, sign up for an account, and
+            start using! We are currently adding docs this moment so you will
+            soon have access to a guide or map on how to preceisely use our
+            software, as well as have access to all our features.
+          </p>
+        </DropDown>
+        <DropDown id="4">
+          <h5 slot="title" class="text-neutral-300 text-2xl">
+            How is my data processed? What about my privacy?
+          </h5>
+          <p class="pb-3 text-xl" slot="content">
+            We are actively working on creating a privacy policy for your
+            reference. The only data the developers of this project collect is
+            your email that you use to sign up so that we are able to
+            communicate with you and find out how your experience using the
+            software is. Additionally, a cookie is used to ensure your login
+            session. We
+            <span class="font-bold">
+              do not collect any additional data and we do not sell it to any
+              third parties
+            </span>.
+          </p>
+        </DropDown>
+        <DropDown id="5">
+          <h5 slot="title" class="text-neutral-300 text-2xl">
+            How can I join the project?
+          </h5>
+          <p class="pb-3 text-xl" slot="content">
+            Please check out our contact section for the latest updates on job
+            or investor opportunities.
+          </p>
+        </DropDown>
+      </DarkCard>
     </section>
   </div>
 
