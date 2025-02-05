@@ -14,7 +14,9 @@ import stockloreLogo from "../assets/svg/SL.svg";
     <title>Stocklore</title>
   </head>
   <body id="special" class="bg-stone-700 font-roboto">
-    <Navbar />
+    <header>
+      <Navbar />
+    </header>
     <main>
       <slot>Page Content Here</slot>
     </main>
@@ -24,6 +26,22 @@ import stockloreLogo from "../assets/svg/SL.svg";
   </body>
 </html>
 
-<style></style>
+<style>
+  body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    min-height: 50px;
+  }
+  footer {
+    min-height: 50px;
+  }
+  main {
+    flex: 1;
+  }
+</style>
 
 <script></script>
