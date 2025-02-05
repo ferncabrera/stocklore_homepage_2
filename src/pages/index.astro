@@ -330,7 +330,9 @@ import stockloreSvg from "../assets/svg/SL.svg";
     <section class="mb-12">
       <DarkCard>
         <h3 slot="header" class="flex justify-center pb-8">
-          Frequently Asked Questions <span class=" pl-2 text-stocklore-secondary">
+          Frequently Asked Questions <span
+            class="pl-2 text-stocklore-secondary"
+          >
             (FAQ)
           </span>
         </h3>
@@ -343,7 +345,8 @@ import stockloreSvg from "../assets/svg/SL.svg";
             Lots of other software is overly expensive, has a big learning
             curve, and can be intimidating to set up. Stocklore is designed to
             be as simple as possible so that you can start filling and using
-            data within the same hour you decide to integrate with us.
+            data within the same hour you decide to integrate with us. You also
+            have the option of configuring your own custom analytics.
           </p>
         </DropDown>
         <DropDown id="2">
@@ -372,6 +375,15 @@ import stockloreSvg from "../assets/svg/SL.svg";
             software, as well as have access to all our features.
           </p>
         </DropDown>
+        <DropDown id="6">
+          <h5 slot="title" class="text-neutral-300 text-2xl">
+            Is there mobile support?
+          </h5>
+          <p class="pb-3 text-xl" slot="content">
+            Currently we do not support mobile screens, only laptop and desktop
+            resolutions. Phone and tablet support will come in the future.
+          </p>
+        </DropDown>
         <DropDown id="4">
           <h5 slot="title" class="text-neutral-300 text-2xl">
             How is my data processed? What about my privacy?
@@ -391,13 +403,16 @@ import stockloreSvg from "../assets/svg/SL.svg";
         </DropDown>
         <DropDown id="5">
           <h5 slot="title" class="text-neutral-300 text-2xl">
-            How can I join the project?
+            Can I join the project?
           </h5>
           <p class="pb-3 text-xl" slot="content">
             Please check out our contact section for the latest updates on job
             or investor opportunities.
           </p>
         </DropDown>
+        <p class="pt-5 text-neutral-400">
+          Still got questions? Reach out through our <span class="text-stocklore-secondary">contact</span>.
+        </p>
       </DarkCard>
     </section>
   </div>
