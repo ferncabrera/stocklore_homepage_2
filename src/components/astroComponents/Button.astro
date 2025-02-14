@@ -1,24 +1,44 @@
 ---
-interface props {
+interface Props {
   class: string;
+  id?: string;
+  isLink?: boolean;
+  href?: string;
 }
 
-const { class: buttonClass } = Astro.props as props;
+const { class: buttonClass, id = "", isLink = false, href = "" } = Astro.props;
 ---
 
-<!-- HTML -->
-<div>
-  <button class={buttonClass}><slot /></button>
-</div>
+<!-- HTML -->{
+  !isLink && (
+    <div id={id}>
+      <button class={buttonClass}>
+        <slot />
+      </button>
+    </div>
+  )
+}
+
+{
+  isLink && (
+    <div id={id}>
+      <a class={buttonClass} href={href}>
+        <slot />
+      </a>
+    </div>
+  )
+}
 
 <!-- Styles -->
 <style lang="scss">
-  button {
+  button, a {
     position: relative;
     border: 2px solid;
     border-radius: 12px;
     padding: 10px;
     overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
 
     &:hover {
       opacity: 0.7;
