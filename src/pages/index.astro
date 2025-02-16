@@ -25,10 +25,10 @@ import stockloreSvg from "../assets/svg/SL.svg";
       <div
         class="col-span-2 py-6 flex flex-wrap items-center justify-center sm:col-span-1 sm:block"
       >
-        <h1 class="text-7xl text-neutral-300 font-bold">
+        <h1 class="text-7xl text-neutral-300 font-bold text-center md:text-start">
           The Simple Tool for Your Business
         </h1>
-        <h2 class="text-3xl text-neutral-400 font-medium pt-4">
+        <h2 class="text-3xl text-neutral-400 font-medium pt-4 text-center md:text-start">
           Stocklore will easily keep track of your business metrics and
           operations.
         </h2>
@@ -58,7 +58,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
     <!-- Features Content -->
     <section class="mt-56 mb-12">
       <div class="grid grid-cols-2 flex">
-        <DarkCard class="mr-6">
+        <DarkCard class=" col-span-2 md:col-span-1 md:mr-6">
           <h3 slot="header">
             <span class="text-stocklore-secondary">Track</span> Inventory
           </h3>
@@ -77,7 +77,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
           </div>
         </DarkCard>
 
-        <DarkCard class="ml-6">
+        <DarkCard class="col-span-2 mt-12 md:col-span-1 md:ml-6 md:mt-0">
           <div class="grid grid-cols-2">
             <div>
               <h3 class="text-3xl text-neutral-300">
@@ -106,7 +106,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
       <DarkCard class="mt-12">
         <h3 slot="header" class="flex justify-center">Rich Features</h3>
         <div class="mt-6 grid grid-cols-3">
-          <div>
+          <div class="col-span-3 pt-5 md:col-span-1 md:pt-12">
             <h4 class="text-3xl flex justify-center mb-3">Add Employees</h4>
             <span class="flex justify-center add-user-section">
               <svg
@@ -138,13 +138,13 @@ import stockloreSvg from "../assets/svg/SL.svg";
                 ></svg
               >
             </span>
-            <ul class="list-disc ml-16 mt-3">
+            <ul class="list-disc ml-12 mt-3">
               <li>Add multiple employees to access your organization.</li>
               <li>Grant different permissions to your employees.</li>
               <li>Track the actions of each account.</li>
             </ul>
           </div>
-          <div>
+          <div class="col-span-3 pt-12 md:col-span-1">
             <h4 class="text-3xl flex justify-center mb-3">
               Import and Export Data
             </h4>
@@ -155,7 +155,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
                 alt={"Purchase and Sale invoices."}
               />
             </span>
-            <ul class="list-disc ml-16 mt-3">
+            <ul class="list-disc ml-12 mt-3">
               <li>Import data from excel spreadsheets or workbooks.</li>
               <li>Export data in a PDF format or spreadsheet.</li>
               <li>
@@ -163,7 +163,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
               </li>
             </ul>
           </div>
-          <div>
+          <div class="col-span-3 pt-12 md:col-span-1">
             <h4 class="text-3xl flex justify-center mb-3">
               Multi-Organization Support
             </h4>
@@ -175,7 +175,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
                 quality={"high"}
               />
             </span>
-            <ul class="list-disc ml-16 mt-3">
+            <ul class="list-disc ml-12 mt-3">
               <li>Host multiple businesses on one account.</li>
               <li>
                 Get invited to other organizations as an admin or employee.
@@ -194,8 +194,8 @@ import stockloreSvg from "../assets/svg/SL.svg";
       >
         Why Stocklore?
       </h3>
-      <div class="grid grid-cols-2 flex">
-        <span class="flex pl-24">
+      <div class="grid grid-cols-3 md:grid-cols-2 px-5 flex">
+        <span class="flex col-span-1 p-4 md:pl-24">
           <svg
             id="gear-svg"
             viewBox="0 0 24 24"
@@ -222,8 +222,8 @@ import stockloreSvg from "../assets/svg/SL.svg";
             </g></svg
           >
         </span>
-        <div>
-          <h4 class="text-4xl text-neutral-400 mb-8 pt-12">
+        <div class="col-span-2 md:col-span-1">
+          <h4 class="text-4xl text-neutral-400 text-center mb-8 pt-12 md:text-start">
             Eliminate Manual Inventory Tracking
           </h4>
           <p class="text-xl text-neutral-400">
@@ -235,8 +235,8 @@ import stockloreSvg from "../assets/svg/SL.svg";
         </div>
       </div>
 
-      <div class="grid grid-cols-2 flex py-12">
-        <div>
+      <div class="grid grid-cols-3 md:grid-cols-2 px-8 flex py-12">
+        <div class="col-span-2 md:col-span-1">
           <h4 class="text-4xl text-neutral-400 mb-8 pt-12">
             Reduce Errors & Enhance Accuracy
           </h4>
@@ -248,7 +248,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
             quickly identify and resolve any issues.
           </p>
         </div>
-        <span class="flex pl-24">
+        <span class="flex pl-5 col-span-1 md:pl-24">
           <svg
             viewBox="-2.4 -2.4 28.80 28.80"
             height="250"
@@ -283,8 +283,8 @@ import stockloreSvg from "../assets/svg/SL.svg";
         </span>
       </div>
 
-      <div class="flex grid grid-cols-2">
-        <span class="flex pl-24">
+      <div class="flex grid px-0 grid-cols-3 md:grid-cols-2">
+        <span class="flex pl-5 col-span-1 md:pl-24">
           <svg
             viewBox="0 0 24 24"
             height="250"
@@ -306,7 +306,7 @@ import stockloreSvg from "../assets/svg/SL.svg";
             ></svg
           >
         </span>
-        <div>
+        <div class="col-span-2 px-4 md:col-span-1 md:pl-4">
           <h4 class="text-4xl text-neutral-400 mb-8 pt-12">
             Insights & Scalability
           </h4>
