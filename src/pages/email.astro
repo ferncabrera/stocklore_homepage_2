@@ -1,0 +1,22 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import EmailForm from "../components/astroComponents/emailForm.astro";
+import DarkCard from "../components/astroComponents/DarkCard.astro";
+---
+
+<MainLayout>
+  <h2 class="my-12 justify-center flex text-neutral-300 text-4xl">
+    Join our Email List!
+  </h2>
+  <p class="text-center text-xl text-neutral-400">
+    Interested in the app but have questions, or want an executive to reach out
+    to you? Give us your email, and we will get back to you as soon as possible!
+  </p>
+  <div class="grid md:grid-cols-3 justify-center mt-12">
+    <div class="col-start-2 flex justify-center">
+      <DarkCard class="w-full">
+        <EmailForm />
+      </DarkCard>
+    </div>
+  </div>
+</MainLayout>

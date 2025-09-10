@@ -1,0 +1,47 @@
+---
+
+---
+
+<form id="email-list" method="POST" action="/api/email" class="w-full">
+  <div class="px-10">
+    <label class="block pb-4">Name:</label>
+    <input class="block w-full email-input" type="text" name="name" required />
+  </div>
+  <div class="py-6 px-10">
+    <label class="block pb-4">Email:</label>
+    <input
+      class="block w-full email-input"
+      type="email"
+      name="email"
+      required
+    />
+  </div>
+
+  <div class="ps-10 pt-3">
+    <button type="submit" class="email-button w-32">Submit</button>
+  </div>
+</form>
+
+<style>
+  .email-input {
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .email-button {
+    padding: 0.5rem;
+    border: none;
+    background: #0070f3;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .email-button:hover {
+    background: #005bb5;
+  }
+</style>
+
+<script>
+	
+</script>
