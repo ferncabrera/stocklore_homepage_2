@@ -305,24 +305,90 @@ targets LCP < 1.5s, CLS < 0.05, Lighthouse Perf/SEO/A11y/Best-Practices ≥ 95 (
 Coverage/Performance for 2–4 weeks for drops on brand queries; rollback = Netlify
 one-click restore of the prior deploy (old build remains intact).
 
-## 10. Accessibility
+## 10. Mobile responsiveness & accessibility (hard requirements)
 
-WCAG-minded from the start: 4.5:1 contrast in both themes (the app tokens already pass for
-body text; verified per-pairing during build), full keyboard paths (tabs, menu, toggle,
-accordions), `aria-expanded`/`aria-controls` on disclosures, focus-visible rings
-(`--ring`), skip-to-content link, `prefers-reduced-motion` honored, form labels + status
-messaging on the email form.
+### 10.1 Mobile-first responsiveness — iPhone & Android device matrix
+
+The site is built **mobile-first** (base styles target small screens; Tailwind breakpoints
+enhance upward) and is validated against a concrete device matrix, not just "looks fine
+narrow":
+
+| Class | Devices emulated (viewport CSS px) |
+| --- | --- |
+| Small phones | iPhone SE (375×667) · small Android (360×640) — plus a **320 px reflow check** (WCAG 1.4.10 floor) |
+| Mainstream iPhones | iPhone 12/13/14 (390×844) · iPhone 15/16 (393×852) |
+| Large iPhones | 14/15/16 Pro Max & Plus (428–430×926–932) |
+| Mainstream Android | Pixel 7/8 (412×915) · Galaxy S23/S24 (360×780, 384×832) |
+| Tablets | iPad Mini portrait (768×1024) · iPad landscape (1024×768) |
+| Desktop | 1280 · 1440 · 1920 |
+
+Each phone size is also checked in **landscape** (short-viewport header/hero behavior).
+
+**Engineering rules baked into every component:**
+- **No horizontal scroll at any width ≥ 320 px** — automated assertion
+  (`document.scrollingElement.scrollWidth ≤ clientWidth`) runs across the whole matrix.
+- **Viewport meta** with `viewport-fit=cover`, and **safe-area insets**
+  (`env(safe-area-inset-*)`) padding the sticky header and any full-bleed bands so notched
+  iPhones never clip content.
+- **`dvh` (with `vh` fallback) for any viewport-height sizing** — the classic iOS Safari
+  URL-bar `100vh` bug is designed out.
+- **Touch targets ≥ 44×44 px** (Apple HIG; exceeds WCAG 2.5.8) for every tappable: nav
+  links, tabs, accordion summaries, buttons, footer links — with adequate spacing.
+- **Inputs ≥ 16 px font-size** so iOS Safari never zoom-jumps on focus (email form).
+- **No hover-dependent affordances** — hover flourishes live behind `@media (hover: hover)`;
+  every interaction has a tap/focus equivalent.
+- **Tab section on small screens:** the 5-tab tour degrades to a horizontally scrollable,
+  snap-aligned tab row (own overflow container) — panels never force page overflow; wide
+  mockups scroll inside their frame.
+- Fluid type via `clamp()`; images/SVGs `max-width: 100%`; the hero stacks (copy over
+  mockup) below `md`.
+- **Mobile performance is part of responsiveness:** static HTML + <10 KB JS targets
+  Lighthouse **mobile preset** (throttled mid-tier device) ≥ 90 performance, LCP < 2.5 s.
+
+**Honest tooling note:** automated checks run in Playwright's Chromium (preinstalled here)
+with device-accurate viewport/DPR/touch emulation — this catches layout, overflow, and
+target-size issues but is not the real WebKit engine. The launch checklist (§13) therefore
+includes a **real-device spot check on an actual iPhone (Safari) and Android (Chrome)**
+before the Netlify repoint is called done; the `dvh`/safe-area/16px-input rules above
+pre-empt the known iOS Safari failure classes.
+
+### 10.2 Accessibility — WCAG 2.2 AA target
+
+- **Semantics:** landmarks (`header/nav/main/footer`), exactly one `h1` per page, logical
+  heading order, `html lang="en"`, skip-to-content link, descriptive link text (no bare
+  "click here").
+- **Keyboard:** every interaction operable — tabs follow the **WAI-ARIA APG Tabs pattern**
+  (roving tabindex + arrow keys), mobile menu and theme toggle follow the disclosure/button
+  patterns (`aria-expanded`/`aria-controls`), no focus traps, visible `:focus-visible` rings
+  from the `--ring` token in both themes.
+- **No-JS parity:** tabs render stacked-with-headings, menu renders expanded, FAQ uses native
+  `<details>/<summary>` — content is never JS-gated.
+- **Contrast:** 4.5:1 body text / 3:1 large text & UI components, verified **per token
+  pairing in both themes** during build (the muted-foreground-on-background pairs get
+  explicit checks); status badges never rely on color alone (always text + color).
+- **Motion:** all animation behind `prefers-reduced-motion`; no autoplay, no parallax.
+- **Forms:** visible labels + `autocomplete` attrs; submit state and success/error announced
+  via an `aria-live="polite"` status region (the current form already swaps text — it gains
+  the live region).
+- **Zoom & reflow:** 200 % zoom and 320 px reflow with no loss (WCAG 1.4.4/1.4.10); tolerant
+  of user text-spacing overrides (1.4.12) — no fixed-height text boxes.
+- **Images/SVG:** informative images get alt text; decorative mockups/diagrams are
+  `aria-hidden` with an adjacent text description where they carry meaning (the nested-MO
+  diagram gets a proper text explanation, not just a picture).
+- **Automated gate:** **axe-core (`@axe-core/playwright`) runs on every page in both themes
+  — 0 serious/critical violations is a merge gate**, alongside the manual keyboard pass.
+  VoiceOver (iOS) / TalkBack (Android) spot checks join the real-device step in §13.
 
 ## 11. Build sequence (post-approval)
 
 | Phase | Work | Checkpoint (gate to next) |
 | --- | --- | --- |
 | **P0 Foundations** | Static output + `site`, TW4 migration, tokens/global.css, fonts, `BaseHead`, `BaseLayout`, netlify.toml, robots/sitemap, 404, dep cleanup | `npm run build` green; preview serves `/`, `/contact`, `/email` (old pages, new shell OK to be ugly); no console errors |
-| **P1 Shell** | Header/nav (mobile + theme toggle), Footer | Keyboard-operable nav both themes; screenshots (Playwright, chromium preinstalled) at 375/768/1440 × light/dark |
-| **P2 Landing** | All 8 sections of §4.1, mockup components, copy v1 | Full-page screenshots both themes; tabs work with and without JS; FAQ JSON-LD validates |
+| **P1 Shell** | Header/nav (mobile + theme toggle), Footer | Keyboard-operable nav both themes; **§10.1 device-matrix screenshots (light/dark) + zero-horizontal-overflow assertion**; axe scan clean on the shell |
+| **P2 Landing** | All 8 sections of §4.1, mockup components, copy v1 | Full-page screenshots **across the §10.1 matrix** both themes; tabs pass the APG keyboard pattern with and without JS; **overflow assertion + axe clean at every matrix width**; FAQ JSON-LD validates |
 | **P3 Data pages** | `roadmap.ts`/`features.ts` (full sets from the source docs), `/roadmap`, `/features`, landing teaser wiring | Every entry traces to a source doc; badges render; anchors from the tour resolve |
 | **P4 Remaining pages** | `/about`, `/contact` + `/email` refresh, `/blog` 301, delete retired files | Link-check all internal hrefs; form POST exercised against a local run |
-| **P5 Hardening & handoff** | Lighthouse pass vs §9 targets, contrast sweep, `format:check`, README rewrite (project docs, not Astro boilerplate), launch checklist doc, final screenshots posted for review | All budgets met; PR-ready branch pushed |
+| **P5 Hardening & handoff** | Lighthouse pass vs §9 targets (**mobile preset included**), full §10.1 matrix sweep (screenshots + overflow assertions, portrait & landscape), **axe-core gate on every page × both themes**, per-pairing contrast sweep, 200 %-zoom/320 px-reflow check, `format:check`, README rewrite, launch checklist doc, final screenshots posted for review | All budgets met, 0 serious/critical axe violations; PR-ready branch pushed |
 
 Each phase = one or more commits on this branch; visual checkpoints (screenshots) shared for
 feedback rather than waiting for the end. Estimated end-to-end: one focused session.
@@ -344,7 +410,9 @@ feedback rather than waiting for the end. Estimated end-to-end: one focused sess
 2. Set `GOOGLE_SERVICE_ACCOUNT_JSON` env var on the new site **before** first deploy; smoke-test
    `/api/email` (row appears in the sheet).
 3. Deploy-preview sanity: all §3 URLs 200/301, favicon, og.png, sitemap-index reachable.
-4. Flip production; spot-check `stocklore.app` (both themes, mobile).
+4. Flip production; spot-check `stocklore.app` (both themes, mobile) — including the
+   **real-device pass from §10.1: an actual iPhone (Safari) and Android phone (Chrome)**,
+   plus a quick VoiceOver/TalkBack sanity check of the landing page and email form.
 5. GSC: submit sitemap, request indexing of `/`; monitor 2–4 weeks.
 6. **Rollback:** Netlify "restore previous deploy" (instant); repo revert if needed; the 301 is
    one line to drop.
@@ -370,5 +438,6 @@ Visitor comprehension in one viewport (who/what/why-cheaper); one-click path to 
 from every page; depth available via tabs → `/features`; the shipping-cadence story visible on
 `/` and provable on `/roadmap` (incl. the honest AI vision); Lighthouse ≥ 95 across the board;
 every pre-existing URL still resolving; brand SERP strengthened (title/description/schema
-disambiguate us from stocklore.ai); the site visually indistinguishable in family from the
-product it sells.
+disambiguate us from stocklore.ai); **flawless rendering across the §10.1 iPhone/Android
+matrix with zero horizontal overflow and WCAG 2.2 AA (0 serious/critical axe violations)**;
+the site visually indistinguishable in family from the product it sells.
