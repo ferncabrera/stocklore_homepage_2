@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stocklore.app/sitemap-index.xml

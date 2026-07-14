@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import CtaBand from "../components/sections/CtaBand.astro";
+import Card from "../components/ui/Card.astro";
+import CanadianFlag from "../components/layout/CanadianFlag.astro";
+import { SITE } from "../data/site";
+---
+
+<BaseLayout
+  title="About · Stocklore — Built in Canada, Priced for Small Business"
+  description="Stocklore is a small Canadian team building powerful, honestly-priced inventory and manufacturing software for small product businesses — fast, tested, and in the open."
+>
+  <PageHero
+    kicker="About"
+    title="Built in Canada, priced for small business"
+    lede="Stocklore exists because the tools with real depth price out the businesses that need them, and the affordable ones fall apart the day you start manufacturing."
+  />
+
+  <div class="safe-x">
+    <div class="mx-auto w-full max-w-3xl space-y-14 py-16">
+      <section>
+        <h2 class="font-heading text-2xl font-bold">Why we exist</h2>
+        <div class="mt-4 space-y-4 text-muted-foreground">
+          <p>
+            Small product businesses get a bad deal. The big systems — the ERPs with consultants and per-module pricing — have the depth but cost more than the
+            problem. The cheap tools are really spreadsheets with a nicer login page: single-level kits, no audit trail, numbers you stop trusting after the
+            first busy month.
+          </p>
+          <p>
+            We're building the tool we think should exist: <strong class="text-foreground">
+              real inventory control and real multi-level manufacturing at a price a small business can actually justify</strong
+            > — with Canadian tax handled properly, because we're Canadian too.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-2xl font-bold">How we work</h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
+          <Card>
+            <h3 class="font-heading font-bold">Small team, big cadence</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+              A small crew of Canadian developers shipping weekly. No committees, no quarters — when something's ready and tested, it goes out.
+            </p>
+          </Card>
+          <Card>
+            <h3 class="font-heading font-bold">Tested like it matters</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Every release runs a heavy end-to-end test suite against a full deployment before it ships. Moving fast only counts if your data survives it.
+            </p>
+          </Card>
+          <Card>
+            <h3 class="font-heading font-bold">Building in the open</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+              The <a href="/roadmap" class="font-medium text-brand hover:underline">roadmap</a> is public — what shipped, what's in progress, what's next. Beta feedback
+              genuinely changes the order.
+            </p>
+          </Card>
+          <Card>
+            <h3 class="font-heading font-bold">Honest pricing</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Free during open beta. When paid plans arrive, they'll be transparent and small-business-priced — announced before the beta ends, no
+              bait-and-switch.
+            </p>
+          </Card>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="flex items-center gap-3 font-heading text-2xl font-bold">
+          Proudly Canadian <CanadianFlag class="h-4 w-auto" />
+        </h2>
+        <p class="mt-4 text-muted-foreground">
+          Stocklore is built and operated in Canada. GST, HST, and PST aren't an afterthought bolted on for "international users" — they're how the tax engine
+          was designed from day one. If you run a product business here, this tool was made with you in mind.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-heading text-2xl font-bold">Say hello</h2>
+        <p class="mt-4 text-muted-foreground">
+          Questions, feedback, partnership or investment inquiries — email
+          <a href={`mailto:${SITE.supportEmail}`} class="font-medium text-brand hover:underline">{SITE.supportEmail}</a>
+          or visit the <a href="/contact" class="font-medium text-brand hover:underline">contact page</a>. A human answers.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <CtaBand />
+</BaseLayout>

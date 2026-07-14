@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Static theme values (fonts). Colors live in :root/.dark below and are
+   bridged into utilities via @theme inline so they stay theme-aware. */
+@theme {
+  --font-sans: "Rubik Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Bricolage Grotesque Variable", "Rubik Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-lightest: var(--lightest);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-destructive: var(--destructive);
+  --color-primary-strong: var(--primary-strong);
+  --color-brand: var(--brand-text);
+}
+
+/* ---------------------------------------------------------------------------
+   Design tokens — mirrored 1:1 from the Stocklore app
+   (open_ims → microservices/ims/client/src/styles/index.css).
+   Warm "workshop" neutrals: paper-toned page, warm-white surfaces, warm-gray
+   lines. The periwinkle brand primary pops against them.
+--------------------------------------------------------------------------- */
+:root {
+  --radius: 0.625rem; /* 10px base drives the whole radius scale */
+
+  --background: #f8f6f1;
+  --foreground: oklch(0.235 0.012 75);
+  --card: #fffdfa;
+  --card-foreground: oklch(0.235 0.012 75);
+  --primary: #6268ff;
+  --primary-foreground: white;
+  /* WCAG AA variants of the brand periwinkle: `--primary-strong` is the solid
+     surface color (white text ≥ 4.5:1); `--brand-text` is the accent used AS
+     text on page/card backgrounds (≥ 4.5:1 both). #6268ff itself sits at
+     ~4.2:1 — keep it for borders, washes, and large graphics only. */
+  --primary-strong: #5157e6;
+  --brand-text: #5157e6;
+  --secondary: #b9bcff;
+  --lightest: #e5e6ff;
+  --muted: oklch(0.962 0.008 84);
+  --muted-foreground: oklch(0.548 0.022 72);
+  --accent: oklch(0.945 0.01 84);
+  --accent-foreground: oklch(0.27 0.015 70);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.913 0.011 80);
+  --input: #d6d0c6;
+  --ring: oklch(0.704 0.04 256.788);
+  --success: #089e12;
+
+  /* Soft layered "card on a desk" shadows — warm-black based, no color glow */
+  --shadow-soft: 0 1px 2px rgb(58 48 32 / 0.05), 0 4px 14px -4px rgb(58 48 32 / 0.07);
+  --shadow-lifted: 0 2px 4px rgb(58 48 32 / 0.05), 0 14px 30px -12px rgb(58 48 32 / 0.16);
+
+  /* Status-badge pairs (from the app's light/dark green-orange-blue tokens) */
+  --badge-live-bg: #deffdd;
+  --badge-live-fg: #036100;
+  --badge-progress-bg: #ffdead;
+  --badge-progress-fg: #814003;
+  --badge-planned-bg: #e5e6ff;
+  --badge-planned-fg: #4f55cc;
+  --badge-vision-bg: oklch(0.962 0.008 84);
+  /* darker than muted-foreground: ≥ 4.5:1 on the muted badge surface */
+  --badge-vision-fg: oklch(0.5 0.022 72);
+}
+
+.dark {
+  /* Warm charcoal equivalents — same hue family as the light theme */
+  --background: #161411;
+  --foreground: #d8d3c8;
+  --card: #1e1b17;
+  --card-foreground: #d8d3c8;
+  --primary: #6268ff;
+  --primary-foreground: #f7f8fa;
+  --primary-strong: #5157e6;
+  --brand-text: #a7abff;
+  --secondary: #ccceff;
+  --lightest: #484d80;
+  --muted: #3f3b33;
+  --muted-foreground: #b5afa3;
+  --accent: #6c665a;
+  --accent-foreground: #d8d3c8;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --success: #4ade80;
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.25), 0 4px 14px -4px rgb(0 0 0 / 0.3);
+  --shadow-lifted: 0 2px 4px rgb(0 0 0 / 0.25), 0 14px 30px -12px rgb(0 0 0 / 0.5);
+
+  --badge-live-bg: #036100;
+  --badge-live-fg: #deffdd;
+  --badge-progress-bg: #814003;
+  --badge-progress-fg: #ffdead;
+  --badge-planned-bg: #484d80;
+  --badge-planned-fg: #e5e6ff;
+  --badge-vision-bg: #3f3b33;
+  --badge-vision-fg: #b5afa3;
+}
+
+/* Theme-aware shadow utilities (runtime vars can't live in @theme) */
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+@utility shadow-lifted {
+  box-shadow: var(--shadow-lifted);
+}
+/* Horizontal padding that respects notched-phone safe areas */
+@utility safe-x {
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* ---------------------------------------------------------------------------
+   Atmosphere & motion — inherited from the app's .sl-* primitives so the
+   marketing site and the product share one visual signature.
+--------------------------------------------------------------------------- */
+
+/* Aurora gradient mesh — airy periwinkle wash in light mode, luminous indigo
+   glow on warm charcoal in dark. Scoped inside a relative container (hero,
+   CTA band), never fixed over the whole page. */
+@utility sl-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 50% at 15% 8%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%),
+    radial-gradient(48% 48% at 88% 18%, color-mix(in oklab, var(--lightest) 65%, transparent), transparent 72%),
+    radial-gradient(60% 55% at 82% 92%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 72%),
+    radial-gradient(45% 45% at 8% 88%, color-mix(in oklab, var(--lightest) 50%, transparent), transparent 70%);
+  filter: saturate(112%);
+}
+.dark .sl-aurora {
+  filter: saturate(130%) brightness(0.92);
+}
+
+/* Fine film grain to break up flat gradients and add depth. */
+@utility sl-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark .sl-grain {
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+}
+
+/* Staggered entrance — the one orchestrated page-load moment. Set inline
+   `animation-delay` to stagger siblings. Under prefers-reduced-motion the
+   global kill-switch collapses the duration, so content lands instantly. */
+@utility sl-animate-in {
+  opacity: 0;
+  animation: sl-fade-up 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes sl-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The signature periwinkle "scan stripe" highlight — one accent, used
+   sparingly on the words that matter. */
+@utility sl-scan-mark {
+  background-color: color-mix(in oklab, var(--primary) 18%, transparent);
+  color: var(--brand-text);
+  border-radius: var(--radius-sm);
+  padding: 0 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Reserve gutter so anchored sections clear the sticky header */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--lightest);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

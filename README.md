@@ -1,48 +1,70 @@
-# Astro Starter Kit: Basics
+# Stocklore Homepage
 
-```sh
-npm create astro@latest -- --template basics
+The marketing site for [stocklore.app](https://stocklore.app) — the entry point to the
+Stocklore portal (`portal.stocklore.app`). Static-first Astro 5 on Netlify, styled with the
+Stocklore app's own design tokens (warm paper neutrals, periwinkle `#6268FF`, Rubik +
+Bricolage Grotesque), theme-aware light + dark.
+
+> Design & content decisions, SEO strategy, and the validation gates are documented in
+> [`docs/REDESIGN_PLAN.md`](./docs/REDESIGN_PLAN.md).
+
+## Stack
+
+- **Astro 5** — static output; every marketing page is prerendered HTML. The one server
+  route (`src/pages/api/email.ts`, email capture → Google Sheets) opts out via
+  `prerender = false` and deploys as a Netlify function through `@astrojs/netlify`.
+- **Tailwind CSS 4** (`@tailwindcss/vite`) — tokens live in `src/styles/global.css` as CSS
+  custom properties (mirrored 1:1 from the app), bridged into utilities via `@theme inline`.
+- **Fonts** — `@fontsource-variable/rubik` (body) + `@fontsource-variable/bricolage-grotesque`
+  (headings), matching the app.
+
+## Commands
+
+| Command                | Action                                                                                    |
+| ---------------------- | ----------------------------------------------------------------------------------------- |
+| `npm install`          | Install dependencies                                                                      |
+| `npm run dev`          | Dev server at `localhost:4321`                                                            |
+| `npm run build`        | Production build to `dist/`                                                               |
+| `npm run check:site`   | **The merge gate** — device-matrix overflow + axe-core a11y checks against a served build |
+| `npm run format:write` | Prettier                                                                                  |
+
+### Running the validation gate
+
+```bash
+npm run build
+(cd dist && python3 -m http.server 8788 &)   # any static server works
+CHROMIUM_PATH=/path/to/chromium npm run check:site   # omit CHROMIUM_PATH to use Playwright's own browser
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+The gate (`scripts/site-check.mjs`) walks every page × light/dark × a 13-device matrix
+(iPhone SE → Pro Max, Pixel, Galaxy, tablets, a 320 px reflow floor, landscape) asserting
+**zero horizontal overflow**, and runs **axe-core** on a desktop + phone subset asserting
+**zero serious/critical violations**. Set `SCREENSHOT_DIR=…` to also capture review
+screenshots.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Content model
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+| File                   | Drives                                                                                                                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/data/site.ts`     | Site-wide constants (portal URL, support email, default meta)                                                                                                                                                      |
+| `src/data/roadmap.ts`  | The **building-in-the-open** roadmap — landing teaser + `/roadmap`. Shipping a feature = add/flip one entry and push; statuses are `shipped` / `in-progress` / `planned` / `vision` and render with honest badges. |
+| `src/data/features.ts` | `/features` page — every item badged `live` / `in-progress` / `planned`                                                                                                                                            |
+| `src/data/faq.ts`      | FAQ accordions + `FAQPage` JSON-LD                                                                                                                                                                                 |
 
-## 🚀 Project Structure
+**Honesty rule:** `shipped`/`live` means in production today. Everything else keeps its badge —
+never present unshipped features (including AI) as live.
 
-Inside of your Astro project, you'll see the following folders and files:
+## SEO
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- URLs are preserved from the previous site; `/blog` 301s to `/roadmap` (`netlify.toml`).
+- Per-page titles/descriptions/canonical + OG/Twitter cards via
+  `src/components/seo/BaseHead.astro`; JSON-LD (Organization, WebSite, SoftwareApplication,
+  FAQPage); `@astrojs/sitemap` + `public/robots.txt`.
+- After deploying structural changes: resubmit the sitemap in Search Console and watch
+  coverage for 2–4 weeks (rollback = Netlify restore previous deploy).
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Deploying
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`netlify.toml` carries the build command, publish dir, the `/blog` redirect, and cache/security
+headers — it overrides Netlify UI settings. Before the first deploy of a new site, set the
+`GOOGLE_SERVICE_ACCOUNT_JSON` env var (email capture) and smoke-test `POST /api/email`.

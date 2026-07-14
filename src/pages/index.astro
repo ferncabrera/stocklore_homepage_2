@@ -1,372 +1,44 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import Button from "../components/astroComponents/Button.astro";
-import DarkCard from "../components/astroComponents/DarkCard.astro";
-import DropDown from "../components/astroComponents/DropDown.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import BenefitStrip from "../components/sections/BenefitStrip.astro";
+import ProductTour from "../components/sections/ProductTour.astro";
+import WedgeSpotlight from "../components/sections/WedgeSpotlight.astro";
+import WhyStocklore from "../components/sections/WhyStocklore.astro";
+import BuildingInTheOpen from "../components/sections/BuildingInTheOpen.astro";
+import Faq from "../components/sections/Faq.astro";
+import CtaBand from "../components/sections/CtaBand.astro";
+import { SITE } from "../data/site";
+import { faqJsonLd } from "../data/faq";
 
-// Images
-import { Image } from "astro:assets";
-import stockloreComputer from "../assets/images/stockloreComputers.png";
-import pieChart from "../assets/images/piechart.png";
-import multiOrganization from "../assets/images/multi-organization.png";
-import invoices from "../assets/images/invoices.png";
-import stockloreSvg from "../assets/svg/SL.svg";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const softwareApplicationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: SITE.portalUrl,
+  description: SITE.description,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "CAD",
+    description: "Free during open beta",
+  },
+};
 ---
 
-<MainLayout>
-  <!-- background -->
-  <div id="background-styling" class="absolute hidden md:flex"></div>
-  <!-- Top Content -->
-  <div class="container pt-8 mt-16 mx-auto">
-    <section class="grid grid-cols-2 mx-12 px-12">
-      <div class="col-span-2 py-6 flex flex-wrap items-center justify-center sm:col-span-1 sm:block">
-        <h1 class="text-7xl text-neutral-300 font-bold text-center md:text-start">The Simple Tool for Your Business</h1>
-        <h2 class="text-3xl text-neutral-400 font-medium pt-4 text-center md:text-start">
-          Stocklore will easily keep track of your business metrics and operations.
-        </h2>
-        <span class="flex justify-center pt-9">
-          <Button
-            class="bg-gradient-to-r from-stocklore-primary to-fuchsia-500 text-neutral-300 text-lg font-bold shiny"
-            isLink
-            href="https://portal.stocklore.app"
-          >
-            Get Started
-          </Button>
-        </span>
-      </div>
-      <div class="col-span-2 py-6 sm:col-span-1 flex items-center justify-center">
-        <span class="w-full h-full flex justify-center">
-          <Image class="stocklore_main_logo" src={stockloreSvg} alt="Main stocklore logo" loading="eager" />
-        </span>
-      </div>
-    </section>
-    <!-- Features Content -->
-    <section class="mt-56 mb-12">
-      <div class="grid grid-cols-2 flex">
-        <DarkCard class="col-span-2 md:col-span-1 md:mr-6">
-          <h3 slot="header">
-            <span class="text-stocklore-secondary">Track</span> Inventory
-          </h3>
-          <div class="grid grid-cols-2 flex">
-            <span class="flex flex-wrap pr-3">
-              <p>
-                Make sure your products and services are kept in check. Keep accurate records of what gets sent in, what gets sent out, and how much you have.
-              </p>
-            </span>
-            <Image src={stockloreComputer} alt="Stocklore app on a computer monitor." />
-          </div>
-        </DarkCard>
-
-        <DarkCard class="col-span-2 mt-12 md:col-span-1 md:ml-6 md:mt-0">
-          <div class="grid grid-cols-2">
-            <div>
-              <h3 class="text-3xl text-neutral-300">
-                Set Your Own <span class="text-stocklore-secondary">Custom Analytics</span> in One Place
-              </h3>
-              <p class="pt-3">
-                Track your orders, sales, and stock activity. See your profits, your most popular products, and your analytics with any set time period.
-              </p>
-              Want to graph something completely custom? - You can do that too.
-            </div>
-            <div>
-              <Image src={pieChart} alt="Pie chart analytics." loading="eager" />
-            </div>
-          </div>
-        </DarkCard>
-      </div>
-
-      <DarkCard class="mt-12">
-        <h3 slot="header" class="flex justify-center">Rich Features</h3>
-        <div class="mt-6 grid grid-cols-3">
-          <div class="col-span-3 pt-5 md:col-span-1 md:pt-12">
-            <h4 class="text-3xl flex justify-center mb-3">Add Employees</h4>
-            <span class="flex justify-center add-user-section">
-              <svg
-                fill="#d4d4d4"
-                viewBox="0 0 24 24"
-                id="add-user"
-                data-name="Line Color"
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon line-color add-user"
-                stroke="#d4d4d4"
-                ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g
-                  id="SVGRepo_iconCarrier"
-                  ><path id="secondary" d="M17,5h4M19,3V7" style="fill: none; stroke: #2c43ba; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"
-                  ></path><path
-                    id="primary"
-                    d="M13,3.35A5.8,5.8,0,0,0,11,3a6,6,0,1,0,5.65,8"
-                    style="fill: none; stroke: #d4d4d4; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path
-                    id="primary-2"
-                    data-name="primary"
-                    d="M15.29,13.19A5,5,0,0,1,19,18v1s-2,2-8,2-8-2-8-2V18a5,5,0,0,1,3.71-4.81"
-                    style="fill: none; stroke: #d4d4d4; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></g
-                ></svg
-              >
-            </span>
-            <ul class="list-disc ml-12 mt-3">
-              <li>Add multiple employees to access your organization.</li>
-              <li>Grant different permissions to your employees.</li>
-              <li>Track the actions of each account.</li>
-            </ul>
-          </div>
-          <div class="col-span-3 pt-12 md:col-span-1">
-            <h4 class="text-3xl flex justify-center mb-3">Import and Export Data</h4>
-            <span class="export-section">
-              <Image class={"export"} src={invoices} alt={"Purchase and Sale invoices."} />
-            </span>
-            <ul class="list-disc ml-12 mt-3">
-              <li>Import data from excel spreadsheets or workbooks.</li>
-              <li>Export data in a PDF format or spreadsheet.</li>
-              <li>Generate professional looking Purchase Order and Sale invoices.</li>
-            </ul>
-          </div>
-          <div class="col-span-3 pt-12 md:col-span-1">
-            <h4 class="text-3xl flex justify-center mb-3">Multi-Organization Support</h4>
-            <span class="multi-section">
-              <Image class="multi-organization" src={multiOrganization} alt={"Multiple organization screen."} quality={"high"} />
-            </span>
-            <ul class="list-disc ml-12 mt-3">
-              <li>Host multiple businesses on one account.</li>
-              <li>Get invited to other organizations as an admin or employee.</li>
-              <li>Access both your own and other people's organizations.</li>
-            </ul>
-          </div>
-        </div>
-      </DarkCard>
-    </section>
-
-    <!-- Benefits Content -->
-    <section>
-      <h3 class="flex justify-center mt-36 mb-16 text-4xl text-stocklore-secondary">Why Stocklore?</h3>
-      <div class="grid grid-cols-3 md:grid-cols-2 px-5 flex">
-        <span class="flex col-span-1 p-4 md:pl-24">
-          <svg id="gear-svg" viewBox="0 0 24 24" height="300" width="300" fill="none" xmlns="http://www.w3.org/2000/svg"
-            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g
-              id="SVGRepo_iconCarrier"
-            >
-              <path
-                d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
-                stroke="#d4d4d4"
-                stroke-width="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M12.9046 3.06005C12.6988 3 12.4659 3 12 3C11.5341 3 11.3012 3 11.0954 3.06005C10.7942 3.14794 10.5281 3.32808 10.3346 3.57511C10.2024 3.74388 10.1159 3.96016 9.94291 4.39272C9.69419 5.01452 9.00393 5.33471 8.36857 5.123L7.79779 4.93281C7.3929 4.79785 7.19045 4.73036 6.99196 4.7188C6.70039 4.70181 6.4102 4.77032 6.15701 4.9159C5.98465 5.01501 5.83376 5.16591 5.53197 5.4677C5.21122 5.78845 5.05084 5.94882 4.94896 6.13189C4.79927 6.40084 4.73595 6.70934 4.76759 7.01551C4.78912 7.2239 4.87335 7.43449 5.04182 7.85566C5.30565 8.51523 5.05184 9.26878 4.44272 9.63433L4.16521 9.80087C3.74031 10.0558 3.52786 10.1833 3.37354 10.3588C3.23698 10.5141 3.13401 10.696 3.07109 10.893C3 11.1156 3 11.3658 3 11.8663C3 12.4589 3 12.7551 3.09462 13.0088C3.17823 13.2329 3.31422 13.4337 3.49124 13.5946C3.69158 13.7766 3.96395 13.8856 4.50866 14.1035C5.06534 14.3261 5.35196 14.9441 5.16236 15.5129L4.94721 16.1584C4.79819 16.6054 4.72367 16.829 4.7169 17.0486C4.70875 17.3127 4.77049 17.5742 4.89587 17.8067C5.00015 18.0002 5.16678 18.1668 5.5 18.5C5.83323 18.8332 5.99985 18.9998 6.19325 19.1041C6.4258 19.2295 6.68733 19.2913 6.9514 19.2831C7.17102 19.2763 7.39456 19.2018 7.84164 19.0528L8.36862 18.8771C9.00393 18.6654 9.6942 18.9855 9.94291 19.6073C10.1159 20.0398 10.2024 20.2561 10.3346 20.4249C10.5281 20.6719 10.7942 20.8521 11.0954 20.94C11.3012 21 11.5341 21 12 21C12.4659 21 12.6988 21 12.9046 20.94C13.2058 20.8521 13.4719 20.6719 13.6654 20.4249C13.7976 20.2561 13.8841 20.0398 14.0571 19.6073C14.3058 18.9855 14.9961 18.6654 15.6313 18.8773L16.1579 19.0529C16.605 19.2019 16.8286 19.2764 17.0482 19.2832C17.3123 19.2913 17.5738 19.2296 17.8063 19.1042C17.9997 18.9999 18.1664 18.8333 18.4996 18.5001C18.8328 18.1669 18.9994 18.0002 19.1037 17.8068C19.2291 17.5743 19.2908 17.3127 19.2827 17.0487C19.2759 16.8291 19.2014 16.6055 19.0524 16.1584L18.8374 15.5134C18.6477 14.9444 18.9344 14.3262 19.4913 14.1035C20.036 13.8856 20.3084 13.7766 20.5088 13.5946C20.6858 13.4337 20.8218 13.2329 20.9054 13.0088C21 12.7551 21 12.4589 21 11.8663C21 11.3658 21 11.1156 20.9289 10.893C20.866 10.696 20.763 10.5141 20.6265 10.3588C20.4721 10.1833 20.2597 10.0558 19.8348 9.80087L19.5569 9.63416C18.9478 9.26867 18.6939 8.51514 18.9578 7.85558C19.1262 7.43443 19.2105 7.22383 19.232 7.01543C19.2636 6.70926 19.2003 6.40077 19.0506 6.13181C18.9487 5.94875 18.7884 5.78837 18.4676 5.46762C18.1658 5.16584 18.0149 5.01494 17.8426 4.91583C17.5894 4.77024 17.2992 4.70174 17.0076 4.71872C16.8091 4.73029 16.6067 4.79777 16.2018 4.93273L15.6314 5.12287C14.9961 5.33464 14.3058 5.0145 14.0571 4.39272C13.8841 3.96016 13.7976 3.74388 13.6654 3.57511C13.4719 3.32808 13.2058 3.14794 12.9046 3.06005Z"
-                stroke="#d4d4d4"
-                stroke-width="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </g></svg
-          >
-        </span>
-        <div class="col-span-2 md:col-span-1">
-          <h4 class="text-4xl text-neutral-400 text-center mb-8 pt-12 md:text-start">Eliminate Manual Inventory Tracking</h4>
-          <p class="text-xl text-neutral-400">
-            Inventory calculations are fully automated, eliminating the need for manual data sorting or row management. All indexing and updates are seamlessly
-            applied across pages and stock records in real time, allowing you to focus more time on growing your business.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-3 md:grid-cols-2 px-8 flex py-12">
-        <div class="col-span-2 md:col-span-1">
-          <h4 class="text-4xl text-neutral-400 mb-8 pt-12">Reduce Errors & Enhance Accuracy</h4>
-          <p class="text-xl text-neutral-400">
-            Streamlined operations ensure accurate and up-to-date inventory records by reducing errors like incorrect quantities, outdated stock levels, and
-            inconsistencies. The system prevents mistakes by flagging invalid actions and providing clear reports, so you can quickly identify and resolve any
-            issues.
-          </p>
-        </div>
-        <span class="flex pl-5 col-span-1 md:pl-24">
-          <svg viewBox="-2.4 -2.4 28.80 28.80" height="250" width="250" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"
-            ><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="14.4" fill="#6b6bcc"></rect></g><g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-              <path
-                d="M3 6C3 4.34315 4.34315 3 6 3H8.75C9.37951 3 9.97229 3.29639 10.35 3.8L11.4 5.2C11.7777 5.70361 12.3705 6 13 6H18C19.6569 6 21 7.34315 21 9V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6Z"
-                stroke="#d4d4d4"
-                stroke-width="2"></path>
-              <path d="M15 12L11.25 16L9 14.1818" stroke="#d4d4d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </g></svg
-          >
-        </span>
-      </div>
-
-      <div class="flex grid px-0 grid-cols-3 md:grid-cols-2">
-        <span class="flex pl-5 col-span-1 md:pl-24">
-          <svg viewBox="0 0 24 24" height="250" width="250" fill="none" xmlns="http://www.w3.org/2000/svg"
-            ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g
-              id="SVGRepo_iconCarrier"
-              ><path d="M21 21H3.8a.8.8 0 0 1-.8-.8V3" stroke="#d4d4d4" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path><path
-                d="M5.47 13.47a.75.75 0 1 0 1.06 1.06l-1.06-1.06ZM10 10l.53-.53a.75.75 0 0 0-1.06 0L10 10Zm4 4-.53.53a.75.75 0 0 0 1.06 0L14 14Zm7.53-6.47a.75.75 0 0 0-1.06-1.06l1.06 1.06Zm-15 7 4-4-1.06-1.06-4 4 1.06 1.06Zm2.94-4 4 4 1.06-1.06-4-4-1.06 1.06Zm5.06 4 7-7-1.06-1.06-7 7 1.06 1.06Z"
-                fill="#6268FF"></path></g
-            ></svg
-          >
-        </span>
-        <div class="col-span-2 px-4 md:col-span-1 md:pl-4">
-          <h4 class="text-4xl text-neutral-400 mb-8 pt-12">Insights & Scalability</h4>
-          <p class="text-xl text-neutral-400">
-            Stocklore allows your business to scale and grow by keeping thousands of records accessible, neat, and organized. Retrieve years worth of data in
-            milliseconds and apply custom analytics to get valuable information on sale trends, profitability and other metrics so that you can make the best
-            decisions for your business.
-          </p>
-        </div>
-      </div>
-
-      <div class="my-24 flex justify-center">
-        <!-- <h4 class="text-xl text-neutral-400">
-          Check the
-          <a class="text-stocklore-secondary" href="about">About</a>
-          page to learn more about what Stocklore can do.
-        </h4> -->
-      </div>
-    </section>
-
-    <!-- Frequently Asked Questions -->
-    <section class="mb-12">
-      <DarkCard>
-        <h3 slot="header" class="flex justify-center pb-8">
-          Frequently Asked Questions <span class="pl-2 text-stocklore-secondary"> (FAQ) </span>
-        </h3>
-        <DropDown id="1">
-          <h5 slot="title" class="text-neutral-300 text-2xl">What makes Stocklore different from other IMS/ERS software?</h5>
-          <p class="pb-3 text-xl" slot="content">
-            Our app is intended for use by small to medium-sized businesses. Lots of other software is overly expensive, has a big learning curve, and can be
-            intimidating to set up. Stocklore is designed to be as simple as possible so that you can start filling and using data within the same hour you
-            decide to integrate with us. You also have the option of configuring your own custom analytics.
-          </p>
-        </DropDown>
-        <DropDown id="2">
-          <h5 slot="title" class="text-neutral-300 text-2xl">How much does it cost?</h5>
-          <p class="pb-3 text-xl" slot="content">
-            We are actually in <span class="font-bold">Open Beta</span>! In other words, it's <span class="text-stocklore-secondary">FREE</span>
-            right now! Stocklore is quite new and is designed by the latest technology making it a super robust and clean app. However, because it is so new, there
-            are still some small occasional bugs and additions being worked on; therefore, we do not want to charge anything. In return, we just simply want you
-            to use it and let us know about any bugs or glitches, as well as whether you like the app or not :)
-          </p>
-        </DropDown>
-        <DropDown id="3">
-          <h5 slot="title" class="text-neutral-300 text-2xl">How can I start using Stocklore?</h5>
-          <p class="pb-3 text-xl" slot="content">
-            Simply click on the get started button, sign up for an account, and start using! We are currently adding docs this moment so you will soon have
-            access to a guide or map on how to preceisely use our software, as well as have access to all our features.
-          </p>
-        </DropDown>
-        <DropDown id="6">
-          <h5 slot="title" class="text-neutral-300 text-2xl">Is there mobile support?</h5>
-          <p class="pb-3 text-xl" slot="content">
-            Currently we do not support mobile screens, only laptop and desktop resolutions. Phone and tablet support will come in the future.
-          </p>
-        </DropDown>
-        <DropDown id="4">
-          <h5 slot="title" class="text-neutral-300 text-2xl">How is my data processed? What about my privacy?</h5>
-          <p class="pb-3 text-xl" slot="content">
-            We are actively working on creating a privacy policy for your reference. The only data the developers of this project collect is your email that you
-            use to sign up so that we are able to communicate with you and find out how your experience using the software is. Additionally, a cookie is used to
-            ensure your login session. We
-            <span class="font-bold"> do not collect any additional data and we do not sell it to any third parties </span>.
-          </p>
-        </DropDown>
-        <DropDown id="5">
-          <h5 slot="title" class="text-neutral-300 text-2xl">Can I join the project?</h5>
-          <p class="pb-3 text-xl" slot="content">Please check out our contact section for the latest updates on job or investor opportunities.</p>
-        </DropDown>
-        <p class="pt-5 text-neutral-400">
-          Still got questions? Reach out through our
-          <a class="text-stocklore-secondary" href="/contact">contact </a>.
-        </p>
-      </DarkCard>
-    </section>
-
-    <!-- Final call to action -->
-    <section class="my-36">
-      <div class="bg-stone-800 rounded py-5">
-        <h2 class="text-4xl text-neutral-300 flex justify-center">
-          Start Using <span class="text-stocklore-secondary pl-2">Stocklore</span>
-        </h2>
-        <div class="flex justify-center mt-12">
-          <Button
-            class="bg-gradient-to-r from-stocklore-primary to-fuchsia-500 text-neutral-300 text-lg font-bold shiny"
-            isLink
-            href="https://portal.stocklore.app"
-            >Get Started
-          </Button>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- styles -->
-  <style lang="scss">
-    @use "../styles/colors.scss";
-
-    #background-styling {
-      top: 7%;
-      left: 0;
-      right: 0;
-      bottom: 20%;
-      width: 100%;
-      z-index: -1;
-      opacity: 0.4;
-
-      background: radial-gradient(ellipse at 68% 40%, colors.$primary, colors.$stone-700, transparent);
-      mask-image: radial-gradient(ellipse 70% 70% at 75% 40%, colors.$stone-700 20%, colors.$stone-700 50%, colors.$stone-700);
-    }
-
-    #gear-svg {
-      animation: rotate_360 14s linear infinite;
-    }
-
-    @keyframes rotate_360 {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .stocklore_main_logo {
-      height: 300px;
-      width: 250px;
-    }
-    .export-section {
-      display: flex;
-      margin-right: 10%;
-      margin-left: 10%;
-      height: 300px;
-      align-items: center;
-    }
-    .export {
-      height: 90%;
-    }
-
-    .multi-section {
-      display: flex;
-      margin-right: 10%;
-      margin-left: 10%;
-      height: 300px;
-      align-items: center;
-    }
-    .multi-organization {
-      border-radius: 10px;
-      height: 70%;
-    }
-
-    .add-user-section {
-      display: flex;
-      margin-right: 20%;
-      margin-left: 20%;
-      height: 300px;
-      align-items: center;
-    }
-    .add-user {
-      border-radius: 10px;
-      height: 70%;
-    }
-  </style>
-</MainLayout>
+<BaseLayout
+  title="Stocklore — Inventory & Manufacturing Software for Canadian Small Business"
+  description={SITE.description}
+  jsonLd={[softwareApplicationJsonLd, faqJsonLd()]}
+>
+  <Hero />
+  <BenefitStrip />
+  <ProductTour />
+  <WedgeSpotlight />
+  <WhyStocklore />
+  <BuildingInTheOpen />
+  <Faq />
+  <CtaBand />
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import { SITE } from "../../data/site";
+import Logo from "./Logo.astro";
+import CanadianFlag from "./CanadianFlag.astro";
+
+const year = new Date().getFullYear();
+
+const COLUMNS = [
+  {
+    title: "Product",
+    links: [
+      { href: "/features", label: "Features" },
+      { href: "/roadmap", label: "Roadmap" },
+      { href: "/#faq", label: "FAQ" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
+      { href: "/email", label: "Email updates" },
+    ],
+  },
+  {
+    title: "Get started",
+    links: [
+      { href: SITE.portalUrl, label: "Open the app" },
+      { href: SITE.portalUrl, label: "Create a free account" },
+    ],
+  },
+];
+---
+
+<footer class="safe-x border-t border-border bg-card">
+  <div class="mx-auto w-full max-w-6xl py-12">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <Logo />
+        <p class="mt-4 max-w-xs text-sm text-muted-foreground">
+          Inventory, manufacturing, purchasing, and CRA-ready invoicing for Canadian small business — in one simple tool.
+        </p>
+        <p class="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+          <CanadianFlag />
+          Proudly Canadian-owned
+        </p>
+      </div>
+
+      {
+        COLUMNS.map(({ title, links }) => (
+          <nav aria-label={title}>
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{title}</h2>
+            <ul class="mt-4 space-y-1">
+              {links.map(({ href, label }) => (
+                <li>
+                  <a href={href} class="inline-flex min-h-9 items-center text-sm text-foreground/80 transition-colors hover:text-brand">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} Stocklore. All rights reserved.</p>
+      <p class="flex items-center gap-2">
+        <CanadianFlag class="h-3 w-auto" />
+        Canadian made
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,55 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import AiVisionCard from "./AiVisionCard.astro";
+import { shipped, inProgress, formatMonth } from "../../data/roadmap";
+
+const recent = shipped.slice(0, 3);
+---
+
+<section class="safe-x border-y border-border bg-card py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-6xl">
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <SectionHeading
+          align="left"
+          kicker="Building in the open"
+          title="Small team. Big shipping cadence."
+          lede="We publish what we ship and what's next — and a heavy end-to-end test suite means we can move fast without breaking your data."
+        />
+
+        <ol class="mt-8 space-y-4">
+          {
+            recent.map((item) => (
+              <li class="flex gap-4">
+                <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full" style="background: var(--badge-live-fg);" aria-hidden="true" />
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Shipped · {item.date ? formatMonth(item.date) : ""}</p>
+                  <p class="mt-0.5 font-medium">{item.title}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          <span class="text-sm font-medium text-muted-foreground">Now building:</span>
+          {
+            inProgress.map((item) => (
+              <span class="rounded-sm px-2 py-1 text-xs font-semibold" style="background: var(--badge-progress-bg); color: var(--badge-progress-fg);">
+                {item.title}
+              </span>
+            ))
+          }
+        </div>
+
+        <a href="/roadmap" class="mt-8 inline-flex min-h-11 items-center gap-1 font-medium text-brand hover:underline">
+          See the full roadmap <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="lg:pt-10">
+        <AiVisionCard />
+      </div>
+    </div>
+  </div>
+</section>

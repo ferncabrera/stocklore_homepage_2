@@ -1,0 +1,30 @@
+---
+/**
+ * Token-native "app in a browser" frame for product mockups.
+ * The mock UI inside is decorative — callers pass an accessible text
+ * description via the `label` prop (exposed as an aria-label on the figure).
+ */
+interface Props {
+  label: string;
+  url?: string;
+  class?: string;
+}
+
+const { label, url = "portal.stocklore.app", class: className = "" } = Astro.props;
+---
+
+<figure role="img" aria-label={label} class:list={["overflow-hidden rounded-lg border border-border bg-card shadow-lifted", className]}>
+  <div class="flex items-center gap-2 border-b border-border bg-muted px-3 py-2" aria-hidden="true">
+    <span class="flex gap-1.5">
+      <span class="h-2.5 w-2.5 rounded-full bg-border"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-border"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-border"></span>
+    </span>
+    <span class="mx-auto flex-shrink truncate rounded-sm bg-card px-3 py-0.5 text-[11px] text-muted-foreground">
+      {url}
+    </span>
+  </div>
+  <div aria-hidden="true">
+    <slot />
+  </div>
+</figure>

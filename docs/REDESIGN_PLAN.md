@@ -29,7 +29,7 @@ building-in-the-open narrative, never as a live feature.
 **SEO reality check (verified 2026-07-14):** the live site ships **no sitemap** (404), no meta
 description, a bare `<title>Stocklore</title>`, and does not rank for category terms in US
 results — and the brand SERP is contested by **stocklore.ai** (an unrelated stock-trading app).
-So the redesign's SEO posture is: *preserve every indexed URL and content theme* (zero-loss),
+So the redesign's SEO posture is: _preserve every indexed URL and content theme_ (zero-loss),
 while finally adding the fundamentals the site never had (titles, descriptions, sitemap,
 structured data, canonical) — which is nearly pure upside. Caveat: search checks ran US-only;
 a Search Console export would confirm Canadian-query equity (open question Q1).
@@ -38,16 +38,16 @@ a Search Console export would confirm Canadian-query equity (open question Q1).
 
 ## 1. Decisions (per the brief) — resolved
 
-| # | Decision | Choice | Needs user sign-off? |
-| --- | --- | --- | --- |
-| D1 | Theme | **Warm light + dark, theme-aware, matching the app's tokens.** Light is the default (marketing convention, and the inFlow look the user cited); auto-follows `prefers-color-scheme`, manual toggle persisted in `localStorage` (FOUC-guarded inline script). Today's dark site effectively becomes the dark variant. | No — recommended in brief; proceeding |
-| D2 | Scope | **Landing + core pages:** rebuild `/`; new `/features`, `/roadmap`, `/about`; refresh `/contact`, `/email`; new shell (nav/footer), `404`. Full-site extras (Solutions-by-industry, Resources) deferred. | No — recommended in brief; proceeding |
-| D3 | Roadmap data | **Curated, typed data file in this repo** (`src/data/roadmap.ts`), derived from the master-plan + agentic-plan phases, rendered at build time. No GitHub-issue ingestion in v1 (the 42 open issues are internal/bug-flavored; curation controls messaging and leaks nothing). Refresh = edit file → push → Netlify auto-build. §7. | No — recommended in brief; proceeding |
-| D4 | Claims & pricing | **Honest split:** advertise only what's live; planned items carry a visible `Planned`/`In progress` badge and feed the roadmap story. Keep **free-open-beta** messaging. Add a small landing **pricing section** (not a page): "Free while in open beta — transparent, Canadian-friendly pricing when we launch. Early users keep preferential rates." | **Yes — Q3:** confirm the early-adopter-pricing sentence (or drop it) |
-| D5 | AI prominence | **Not the hero** (nothing is shipped — honesty constraint). A dedicated **"Where this is going"** vision panel inside the building-in-the-open section (landing) + a full **AI/agent lane** on `/roadmap`: mock chat exchange of the Andrea's-Flowers flow, badged `In development`, with the human-in-the-loop / your-permissions / provider-agnostic principles. | No — honest-by-construction; proceeding |
-| D6 | Assets | **Hand-built, token-native product mockups** (HTML/CSS "browser-frame" compositions + SVG diagrams — crisp at any DPI, theme-aware, ~zero bytes of image weight), swapped for real app screenshots whenever supplied. The 4 legacy PNGs retire. | **Yes — Q2:** real screenshots / brand kit if available |
-| — | Blog URL | `/blog` (empty page, "no articles yet") **301 → `/roadmap`** — same intent (updates), removes a thin page, keeps any equity. Reversible in one line of `netlify.toml`. | **Yes — Q4:** confirm the 301 (else `/blog` stays, restyled) |
-| — | CSS stack | **Tailwind 3 → 4** (`@tailwindcss/vite`), CSS-first `@theme` mirroring the app's token names; retire SCSS + the deprecated `@astrojs/tailwind` integration. §6.2. | No — small site, cheap migration, token parity with the app |
+| #   | Decision         | Choice                                                                                                                                                                                                                                                                                                                                                             | Needs user sign-off?                                                  |
+| --- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| D1  | Theme            | **Warm light + dark, theme-aware, matching the app's tokens.** Light is the default (marketing convention, and the inFlow look the user cited); auto-follows `prefers-color-scheme`, manual toggle persisted in `localStorage` (FOUC-guarded inline script). Today's dark site effectively becomes the dark variant.                                               | No — recommended in brief; proceeding                                 |
+| D2  | Scope            | **Landing + core pages:** rebuild `/`; new `/features`, `/roadmap`, `/about`; refresh `/contact`, `/email`; new shell (nav/footer), `404`. Full-site extras (Solutions-by-industry, Resources) deferred.                                                                                                                                                           | No — recommended in brief; proceeding                                 |
+| D3  | Roadmap data     | **Curated, typed data file in this repo** (`src/data/roadmap.ts`), derived from the master-plan + agentic-plan phases, rendered at build time. No GitHub-issue ingestion in v1 (the 42 open issues are internal/bug-flavored; curation controls messaging and leaks nothing). Refresh = edit file → push → Netlify auto-build. §7.                                 | No — recommended in brief; proceeding                                 |
+| D4  | Claims & pricing | **Honest split:** advertise only what's live; planned items carry a visible `Planned`/`In progress` badge and feed the roadmap story. Keep **free-open-beta** messaging. Add a small landing **pricing section** (not a page): "Free while in open beta — transparent, Canadian-friendly pricing when we launch. Early users keep preferential rates."             | **Yes — Q3:** confirm the early-adopter-pricing sentence (or drop it) |
+| D5  | AI prominence    | **Not the hero** (nothing is shipped — honesty constraint). A dedicated **"Where this is going"** vision panel inside the building-in-the-open section (landing) + a full **AI/agent lane** on `/roadmap`: mock chat exchange of the Andrea's-Flowers flow, badged `In development`, with the human-in-the-loop / your-permissions / provider-agnostic principles. | No — honest-by-construction; proceeding                               |
+| D6  | Assets           | **Hand-built, token-native product mockups** (HTML/CSS "browser-frame" compositions + SVG diagrams — crisp at any DPI, theme-aware, ~zero bytes of image weight), swapped for real app screenshots whenever supplied. The 4 legacy PNGs retire.                                                                                                                    | **Yes — Q2:** real screenshots / brand kit if available               |
+| —   | Blog URL         | `/blog` (empty page, "no articles yet") **301 → `/roadmap`** — same intent (updates), removes a thin page, keeps any equity. Reversible in one line of `netlify.toml`.                                                                                                                                                                                             | **Yes — Q4:** confirm the 301 (else `/blog` stays, restyled)          |
+| —   | CSS stack        | **Tailwind 3 → 4** (`@tailwindcss/vite`), CSS-first `@theme` mirroring the app's token names; retire SCSS + the deprecated `@astrojs/tailwind` integration. §6.2.                                                                                                                                                                                                  | No — small site, cheap migration, token parity with the app           |
 
 ---
 
@@ -75,17 +75,17 @@ the plan:
 
 ## 3. Information architecture — URLs & redirects
 
-| URL | Status | Disposition |
-| --- | --- | --- |
-| `/` | live, indexed | **Rebuild** (§4.1). Same URL. |
-| `/contact` | live | **Refresh** in the new shell; same URL, same content themes (support email, careers/investors) expanded with the about-page cross-link. |
-| `/email` | live | **Refresh**; same URL, same form + `/api/email` endpoint. Reframed "Get product updates" (building-in-open tie-in). |
-| `/blog` | live, thin/empty | **301 → `/roadmap`** (Q4). Fallback: keep + restyle as an updates feed alias. |
-| `/api/email` | live (POST) | **Unchanged.** |
-| `/features` | new | Product depth by area, shipped/planned badged (§4.2). |
-| `/roadmap` | new | Building-in-the-open timeline + AI vision lane (§4.3). |
-| `/about` | new | The `_about.astro` stub finally becomes real (§4.4). |
-| `/404` | new | Branded 404 (Astro `404.astro` → Netlify picks it up automatically). |
+| URL          | Status           | Disposition                                                                                                                             |
+| ------------ | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`          | live, indexed    | **Rebuild** (§4.1). Same URL.                                                                                                           |
+| `/contact`   | live             | **Refresh** in the new shell; same URL, same content themes (support email, careers/investors) expanded with the about-page cross-link. |
+| `/email`     | live             | **Refresh**; same URL, same form + `/api/email` endpoint. Reframed "Get product updates" (building-in-open tie-in).                     |
+| `/blog`      | live, thin/empty | **301 → `/roadmap`** (Q4). Fallback: keep + restyle as an updates feed alias.                                                           |
+| `/api/email` | live (POST)      | **Unchanged.**                                                                                                                          |
+| `/features`  | new              | Product depth by area, shipped/planned badged (§4.2).                                                                                   |
+| `/roadmap`   | new              | Building-in-the-open timeline + AI vision lane (§4.3).                                                                                  |
+| `/about`     | new              | The `_about.astro` stub finally becomes real (§4.4).                                                                                    |
+| `/404`       | new              | Branded 404 (Astro `404.astro` → Netlify picks it up automatically).                                                                    |
 
 Redirects live in `netlify.toml` (checked into this repo — note: it overrides Netlify UI
 settings; coordinated at repoint time, §13). No other slug changes — zero-loss posture.
@@ -94,16 +94,16 @@ settings; coordinated at repoint time, §13). No other slug changes — zero-los
 
 ### 4.1 `/` — Landing (the centerpiece)
 
-| # | Section | Pattern source | Purpose & copy direction |
-| --- | --- | --- | --- |
-| 1 | **Hero** | inFlow: big confident type, one primary CTA, product image right/below | H1 (candidates, Q5): **(a)** "Inventory & manufacturing software that punches above its price" · (b) "Track it. Make it. Sell it. One simple tool." · (c) "Serious inventory management for Canadian small business". Subhead carries the wedge + keywords: *"Stocklore gives Canadian small businesses real inventory control, multi-level manufacturing, invoicing, and CRA-ready tax — without enterprise pricing or a six-week implementation."* Primary CTA **"Get started — it's free"** → `https://portal.stocklore.app`; secondary ghost "See what it does" (anchor to tour). Trust line: *Free during open beta · No credit card · Canadian-owned 🇨🇦*. Visual: token-native app mockup (D6). |
-| 2 | **Benefit strip** | inFlow's 3 simple cards | "Set up in an afternoon" (self-serve, demo data seeding, CSV import) · "Built for Canadian business" (CRA GST/HST/PST native, Canadian-owned) · "More than inventory" (make, buy, sell, invoice in one place). |
-| 3 | **Tabbed product tour** | user's explicit tabs ask; inFlow solutions cards | 5 tabs — **Track** (ledger-backed stock, movement history, multi-location + transfers, low-stock alerts) · **Make** (BOMs, nested MOs/sub-assemblies, auto-MO from a sale) · **Buy** (POs, vendors, receiving) · **Sell** (invoices, CRA tax modes, PDF) · **Operate** (roles enforced server-side, imports/exports, multi-org, realtime notifications). Each: 1-para copy + 3 bullets + mockup + "More →" to `/features#<area>`. Progressive enhancement: ARIA tabs w/ tiny vanilla JS; no-JS renders all panels stacked. |
-| 4 | **Manufacturing wedge spotlight** | our differentiation (research §4) | The one deep-dive on the landing page: *"Assemblies inside assemblies"* — nested MO-tree diagram (SVG), copy: most light tools stop at single-level kits; Stocklore builds the whole tree and consumes components bottom-up, straight from a confirmed sale. |
-| 5 | **Why Stocklore / honest comparison** | research pricing signal | Three columns: *Spreadsheets* (free, breaks at scale) · **Stocklore** (the loop, one price, no implementation) · *Legacy ERP* (powerful, $$$ + consultants). Generic categories, no named-competitor claims. Includes the **pricing note** (D4/Q3) + beta framing. |
-| 6 | **Building in the open** | Drizzle timeline (teaser) | Kicker: *"Small team. Big shipping cadence."* Last ~4 shipped months from `roadmap.ts` + "Now building" chips + the **AI vision card** (D5): mini mock-chat of the Andrea's-Flowers example, badge `In development`, one line of principles (drafts everything, you approve, your permissions apply). CTA → `/roadmap`. |
-| 7 | **FAQ** | preserved ranking content | Native `<details>` accordions + **FAQPage JSON-LD**. Rewrites of the existing 6 Q&As (they're the richest indexed text): differentiation (now cites the real wedge), cost (free beta, D4 wording), getting started, mobile (replaced per §12), privacy (kept, softened), join/contact. |
-| 8 | **Final CTA band** | inFlow | Repeat primary CTA + inline email-capture (posts to `/api/email`) as the soft conversion. |
+| #   | Section                               | Pattern source                                                         | Purpose & copy direction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| --- | ------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Hero**                              | inFlow: big confident type, one primary CTA, product image right/below | H1 (candidates, Q5): **(a)** "Inventory & manufacturing software that punches above its price" · (b) "Track it. Make it. Sell it. One simple tool." · (c) "Serious inventory management for Canadian small business". Subhead carries the wedge + keywords: _"Stocklore gives Canadian small businesses real inventory control, multi-level manufacturing, invoicing, and CRA-ready tax — without enterprise pricing or a six-week implementation."_ Primary CTA **"Get started — it's free"** → `https://portal.stocklore.app`; secondary ghost "See what it does" (anchor to tour). Trust line: _Free during open beta · No credit card · Canadian-owned 🇨🇦_. Visual: token-native app mockup (D6). |
+| 2   | **Benefit strip**                     | inFlow's 3 simple cards                                                | "Set up in an afternoon" (self-serve, demo data seeding, CSV import) · "Built for Canadian business" (CRA GST/HST/PST native, Canadian-owned) · "More than inventory" (make, buy, sell, invoice in one place).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 3   | **Tabbed product tour**               | user's explicit tabs ask; inFlow solutions cards                       | 5 tabs — **Track** (ledger-backed stock, movement history, multi-location + transfers, low-stock alerts) · **Make** (BOMs, nested MOs/sub-assemblies, auto-MO from a sale) · **Buy** (POs, vendors, receiving) · **Sell** (invoices, CRA tax modes, PDF) · **Operate** (roles enforced server-side, imports/exports, multi-org, realtime notifications). Each: 1-para copy + 3 bullets + mockup + "More →" to `/features#<area>`. Progressive enhancement: ARIA tabs w/ tiny vanilla JS; no-JS renders all panels stacked.                                                                                                                                                                            |
+| 4   | **Manufacturing wedge spotlight**     | our differentiation (research §4)                                      | The one deep-dive on the landing page: _"Assemblies inside assemblies"_ — nested MO-tree diagram (SVG), copy: most light tools stop at single-level kits; Stocklore builds the whole tree and consumes components bottom-up, straight from a confirmed sale.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| 5   | **Why Stocklore / honest comparison** | research pricing signal                                                | Three columns: _Spreadsheets_ (free, breaks at scale) · **Stocklore** (the loop, one price, no implementation) · _Legacy ERP_ (powerful, $$$ + consultants). Generic categories, no named-competitor claims. Includes the **pricing note** (D4/Q3) + beta framing.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| 6   | **Building in the open**              | Drizzle timeline (teaser)                                              | Kicker: _"Small team. Big shipping cadence."_ Last ~4 shipped months from `roadmap.ts` + "Now building" chips + the **AI vision card** (D5): mini mock-chat of the Andrea's-Flowers example, badge `In development`, one line of principles (drafts everything, you approve, your permissions apply). CTA → `/roadmap`.                                                                                                                                                                                                                                                                                                                                                                               |
+| 7   | **FAQ**                               | preserved ranking content                                              | Native `<details>` accordions + **FAQPage JSON-LD**. Rewrites of the existing 6 Q&As (they're the richest indexed text): differentiation (now cites the real wedge), cost (free beta, D4 wording), getting started, mobile (replaced per §12), privacy (kept, softened), join/contact.                                                                                                                                                                                                                                                                                                                                                                                                                |
+| 8   | **Final CTA band**                    | inFlow                                                                 | Repeat primary CTA + inline email-capture (posts to `/api/email`) as the soft conversion.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 ### 4.2 `/features`
 
@@ -150,16 +150,16 @@ Tokens are **copied from** `open_ims` `client/src/styles/index.css` into
 `src/styles/global.css` as CSS custom properties consumed by a Tailwind 4 `@theme inline`
 block — same names, same values, so site and app can't drift apart visually:
 
-| Token | Light | Dark |
-| --- | --- | --- |
-| `--background` | `#f8f6f1` (page-grey) | `#161411` |
-| `--card` / surfaces | `#fffdfa` | `#1e1b17` |
-| `--foreground` | `oklch(0.235 0.012 75)` | `#d8d3c8` |
-| `--primary` | `#6268ff` (fg white) | `#6268ff` (fg `#f7f8fa`) |
-| `--secondary` / `--lightest` | `#b9bcff` / `#e5e6ff` | `#ccceff` / `#484d80` |
-| `--muted` / `--muted-foreground` | `oklch(0.962 0.008 84)` / `oklch(0.548 0.022 72)` | `#3f3b33` / `#b5afa3` |
-| `--border` | `oklch(0.913 0.011 80)` | `oklch(1 0 0 / 10%)` |
-| `--shadow-soft` / `--shadow-lifted` | warm-black soft pair (values verbatim from app) | black pair (verbatim) |
+| Token                               | Light                                             | Dark                     |
+| ----------------------------------- | ------------------------------------------------- | ------------------------ |
+| `--background`                      | `#f8f6f1` (page-grey)                             | `#161411`                |
+| `--card` / surfaces                 | `#fffdfa`                                         | `#1e1b17`                |
+| `--foreground`                      | `oklch(0.235 0.012 75)`                           | `#d8d3c8`                |
+| `--primary`                         | `#6268ff` (fg white)                              | `#6268ff` (fg `#f7f8fa`) |
+| `--secondary` / `--lightest`        | `#b9bcff` / `#e5e6ff`                             | `#ccceff` / `#484d80`    |
+| `--muted` / `--muted-foreground`    | `oklch(0.962 0.008 84)` / `oklch(0.548 0.022 72)` | `#3f3b33` / `#b5afa3`    |
+| `--border`                          | `oklch(0.913 0.011 80)`                           | `oklch(1 0 0 / 10%)`     |
+| `--shadow-soft` / `--shadow-lifted` | warm-black soft pair (values verbatim from app)   | black pair (verbatim)    |
 
 - **Radius scale:** `--radius: 10px` base → sm 6 / md 8 / lg 10 / xl 12. Buttons rectangular
   8px — no pills, no `rounded-2xl+`. **Shadows:** soft neutral only — no colored glows; the
@@ -234,20 +234,54 @@ Add: `@tailwindcss/vite`, `tailwindcss@4`, `@astrojs/sitemap`, `@fontsource-vari
 // src/data/roadmap.ts
 export type RoadmapStatus = "shipped" | "in-progress" | "planned" | "vision";
 export interface RoadmapItem {
-  id: string;                 // stable slug, e.g. "multi-location"
-  title: string;              // "Stock by location + transfers"
-  blurb: string;              // one customer-language sentence
+  id: string; // stable slug, e.g. "multi-location"
+  title: string; // "Stock by location + transfers"
+  blurb: string; // one customer-language sentence
   status: RoadmapStatus;
   area: "inventory" | "manufacturing" | "catalog" | "sales" | "purchasing" | "platform" | "ai";
-  date?: string;              // "2026-07" — required when shipped (groups the timeline)
+  date?: string; // "2026-07" — required when shipped (groups the timeline)
 }
 export const ROADMAP: RoadmapItem[] = [
-  { id: "catalog-rebuild", title: "Product pages rebuilt — units of measure, photos, custom fields, categories", blurb: "Model your catalog your way: sell by the metre, attach photos, add your own fields.", status: "shipped", area: "catalog", date: "2026-07" },
-  { id: "multi-location", title: "Multi-location stock + transfers", blurb: "See on-hand per location and move stock between them with a two-sided transfer document.", status: "shipped", area: "inventory", date: "2026-07" },
-  { id: "stock-ledger", title: "The stock ledger — every movement, recorded", blurb: "Adjustments, low-stock alerts, and a full audit history behind every quantity.", status: "shipped", area: "inventory", date: "2026-07" },
-  { id: "sales-orders", title: "Sales orders (separate from invoices)", blurb: "Quote → order → fulfill → invoice, the way real operations flow.", status: "in-progress", area: "sales" },
+  {
+    id: "catalog-rebuild",
+    title: "Product pages rebuilt — units of measure, photos, custom fields, categories",
+    blurb: "Model your catalog your way: sell by the metre, attach photos, add your own fields.",
+    status: "shipped",
+    area: "catalog",
+    date: "2026-07",
+  },
+  {
+    id: "multi-location",
+    title: "Multi-location stock + transfers",
+    blurb: "See on-hand per location and move stock between them with a two-sided transfer document.",
+    status: "shipped",
+    area: "inventory",
+    date: "2026-07",
+  },
+  {
+    id: "stock-ledger",
+    title: "The stock ledger — every movement, recorded",
+    blurb: "Adjustments, low-stock alerts, and a full audit history behind every quantity.",
+    status: "shipped",
+    area: "inventory",
+    date: "2026-07",
+  },
+  {
+    id: "sales-orders",
+    title: "Sales orders (separate from invoices)",
+    blurb: "Quote → order → fulfill → invoice, the way real operations flow.",
+    status: "in-progress",
+    area: "sales",
+  },
   { id: "public-api", title: "Public REST API v1", blurb: "Your data, programmable.", status: "planned", area: "platform" },
-  { id: "ai-assistant", title: "The Stocklore assistant", blurb: "Describe the work — “draft an invoice for Andrea’s Flowers with four flower kits” — review what it prepared, approve, done. Human-approved, always.", status: "vision", area: "ai" },
+  {
+    id: "ai-assistant",
+    title: "The Stocklore assistant",
+    blurb:
+      "Describe the work — “draft an invoice for Andrea’s Flowers with four flower kits” — review what it prepared, approve, done. Human-approved, always.",
+    status: "vision",
+    area: "ai",
+  },
   // … full set derived from MASTER_PLAN.md §3/§6 + agentic plan at build time
 ];
 ```
@@ -265,8 +299,9 @@ ledger-backed stock with full movement history, reason-coded adjustments, low-st
 reorder points; multi-location stock + transfers; BOMs with **nested manufacturing orders /
 sub-assemblies (≤6 deep), auto-MO from a confirmed sale, BOM-aware fulfillment**; invoices
 (draft→confirmed, PDF), POs + receiving; unified contacts; **CRA GST/HST/PST** agencies/rates
-+ 3 tax modes; CSV/Excel import, PDF/Excel export; **server-enforced roles**; multi-org
-accounts; realtime notifications; self-serve demo data.
+
+- 3 tax modes; CSV/Excel import, PDF/Excel export; **server-enforced roles**; multi-org
+  accounts; realtime notifications; self-serve demo data.
 
 **In progress:** sales orders (WP-4.1 design drafted). **Planned (MVP1):** quotes, partial
 receiving, partial fulfillment, kits/bundles, valuation & aging reports, public REST API.
@@ -283,12 +318,13 @@ copy per D4/Q3; no "AI-powered" present-tense anywhere.
 
 **Preserve (zero-loss):** all URLs 200 or 301 (§3); FAQ content themes carried forward;
 "Stocklore" stays first in the home title (brand-SERP defense vs stocklore.ai); heading themes
-migrate (the generic H1 is *deliberately* upgraded to a keyword-bearing one — documented
+migrate (the generic H1 is _deliberately_ upgraded to a keyword-bearing one — documented
 change, low risk given no category rankings exist to lose); Cloudflare/Netlify DNS untouched.
 
 **Add (the fundamentals the site never had):**
+
 - `BaseHead` on every page: unique title (`Stocklore — Inventory & Manufacturing Software for
-  Canadian Small Business` home pattern; `<Page> · Stocklore` elsewhere), meta description,
+Canadian Small Business` home pattern; `<Page> · Stocklore` elsewhere), meta description,
   canonical (from `site`), OG + Twitter cards with a branded 1200×630 `public/og.png`
   (generated via a Playwright screenshot of a token-styled HTML template during build phase).
 - JSON-LD: `Organization` + `WebSite` (site-wide), `SoftwareApplication`
@@ -313,18 +349,19 @@ The site is built **mobile-first** (base styles target small screens; Tailwind b
 enhance upward) and is validated against a concrete device matrix, not just "looks fine
 narrow":
 
-| Class | Devices emulated (viewport CSS px) |
-| --- | --- |
-| Small phones | iPhone SE (375×667) · small Android (360×640) — plus a **320 px reflow check** (WCAG 1.4.10 floor) |
-| Mainstream iPhones | iPhone 12/13/14 (390×844) · iPhone 15/16 (393×852) |
-| Large iPhones | 14/15/16 Pro Max & Plus (428–430×926–932) |
-| Mainstream Android | Pixel 7/8 (412×915) · Galaxy S23/S24 (360×780, 384×832) |
-| Tablets | iPad Mini portrait (768×1024) · iPad landscape (1024×768) |
-| Desktop | 1280 · 1440 · 1920 |
+| Class              | Devices emulated (viewport CSS px)                                                                 |
+| ------------------ | -------------------------------------------------------------------------------------------------- |
+| Small phones       | iPhone SE (375×667) · small Android (360×640) — plus a **320 px reflow check** (WCAG 1.4.10 floor) |
+| Mainstream iPhones | iPhone 12/13/14 (390×844) · iPhone 15/16 (393×852)                                                 |
+| Large iPhones      | 14/15/16 Pro Max & Plus (428–430×926–932)                                                          |
+| Mainstream Android | Pixel 7/8 (412×915) · Galaxy S23/S24 (360×780, 384×832)                                            |
+| Tablets            | iPad Mini portrait (768×1024) · iPad landscape (1024×768)                                          |
+| Desktop            | 1280 · 1440 · 1920                                                                                 |
 
 Each phone size is also checked in **landscape** (short-viewport header/hero behavior).
 
 **Engineering rules baked into every component:**
+
 - **No horizontal scroll at any width ≥ 320 px** — automated assertion
   (`document.scrollingElement.scrollWidth ≤ clientWidth`) runs across the whole matrix.
 - **Viewport meta** with `viewport-fit=cover`, and **safe-area insets**
@@ -381,27 +418,27 @@ pre-empt the known iOS Safari failure classes.
 
 ## 11. Build sequence (post-approval)
 
-| Phase | Work | Checkpoint (gate to next) |
-| --- | --- | --- |
-| **P0 Foundations** | Static output + `site`, TW4 migration, tokens/global.css, fonts, `BaseHead`, `BaseLayout`, netlify.toml, robots/sitemap, 404, dep cleanup | `npm run build` green; preview serves `/`, `/contact`, `/email` (old pages, new shell OK to be ugly); no console errors |
-| **P1 Shell** | Header/nav (mobile + theme toggle), Footer | Keyboard-operable nav both themes; **§10.1 device-matrix screenshots (light/dark) + zero-horizontal-overflow assertion**; axe scan clean on the shell |
-| **P2 Landing** | All 8 sections of §4.1, mockup components, copy v1 | Full-page screenshots **across the §10.1 matrix** both themes; tabs pass the APG keyboard pattern with and without JS; **overflow assertion + axe clean at every matrix width**; FAQ JSON-LD validates |
-| **P3 Data pages** | `roadmap.ts`/`features.ts` (full sets from the source docs), `/roadmap`, `/features`, landing teaser wiring | Every entry traces to a source doc; badges render; anchors from the tour resolve |
-| **P4 Remaining pages** | `/about`, `/contact` + `/email` refresh, `/blog` 301, delete retired files | Link-check all internal hrefs; form POST exercised against a local run |
-| **P5 Hardening & handoff** | Lighthouse pass vs §9 targets (**mobile preset included**), full §10.1 matrix sweep (screenshots + overflow assertions, portrait & landscape), **axe-core gate on every page × both themes**, per-pairing contrast sweep, 200 %-zoom/320 px-reflow check, `format:check`, README rewrite, launch checklist doc, final screenshots posted for review | All budgets met, 0 serious/critical axe violations; PR-ready branch pushed |
+| Phase                      | Work                                                                                                                                                                                                                                                                                                                                                | Checkpoint (gate to next)                                                                                                                                                                              |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **P0 Foundations**         | Static output + `site`, TW4 migration, tokens/global.css, fonts, `BaseHead`, `BaseLayout`, netlify.toml, robots/sitemap, 404, dep cleanup                                                                                                                                                                                                           | `npm run build` green; preview serves `/`, `/contact`, `/email` (old pages, new shell OK to be ugly); no console errors                                                                                |
+| **P1 Shell**               | Header/nav (mobile + theme toggle), Footer                                                                                                                                                                                                                                                                                                          | Keyboard-operable nav both themes; **§10.1 device-matrix screenshots (light/dark) + zero-horizontal-overflow assertion**; axe scan clean on the shell                                                  |
+| **P2 Landing**             | All 8 sections of §4.1, mockup components, copy v1                                                                                                                                                                                                                                                                                                  | Full-page screenshots **across the §10.1 matrix** both themes; tabs pass the APG keyboard pattern with and without JS; **overflow assertion + axe clean at every matrix width**; FAQ JSON-LD validates |
+| **P3 Data pages**          | `roadmap.ts`/`features.ts` (full sets from the source docs), `/roadmap`, `/features`, landing teaser wiring                                                                                                                                                                                                                                         | Every entry traces to a source doc; badges render; anchors from the tour resolve                                                                                                                       |
+| **P4 Remaining pages**     | `/about`, `/contact` + `/email` refresh, `/blog` 301, delete retired files                                                                                                                                                                                                                                                                          | Link-check all internal hrefs; form POST exercised against a local run                                                                                                                                 |
+| **P5 Hardening & handoff** | Lighthouse pass vs §9 targets (**mobile preset included**), full §10.1 matrix sweep (screenshots + overflow assertions, portrait & landscape), **axe-core gate on every page × both themes**, per-pairing contrast sweep, 200 %-zoom/320 px-reflow check, `format:check`, README rewrite, launch checklist doc, final screenshots posted for review | All budgets met, 0 serious/critical axe violations; PR-ready branch pushed                                                                                                                             |
 
 Each phase = one or more commits on this branch; visual checkpoints (screenshots) shared for
 feedback rather than waiting for the end. Estimated end-to-end: one focused session.
 
 ## 12. Deliberate removals (and why they're safe)
 
-| Removed | Why | Implication |
-| --- | --- | --- |
-| "We do not support mobile screens" FAQ | Actively harmful copy; marketing site itself goes mobile-first. Replaced with: "Stocklore runs in any modern browser; a dedicated mobile experience is on the roadmap." | Positive. (App-side mobile claims stay conservative — Q6.) |
-| Purple→fuchsia gradient + "shiny" CTA, stone-700 dark-only theme | Off-brand vs the app's warm system (no colored glows rule) | None — visual only |
-| Empty `/blog` page | Thin content; 301 keeps equity and the "updates" intent lands on `/roadmap` | Q4 |
-| 4 legacy PNGs, DarkCard/DropDown/old Button/SpinnerLoader, MainLayout, SCSS colors, Roboto, `@google-cloud/local-auth`, `sass` | Superseded by the new system; local-auth was never imported | None |
-| "Stocklore 2025 ©" | Stale | Becomes dynamic year |
+| Removed                                                                                                                        | Why                                                                                                                                                                     | Implication                                                |
+| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| "We do not support mobile screens" FAQ                                                                                         | Actively harmful copy; marketing site itself goes mobile-first. Replaced with: "Stocklore runs in any modern browser; a dedicated mobile experience is on the roadmap." | Positive. (App-side mobile claims stay conservative — Q6.) |
+| Purple→fuchsia gradient + "shiny" CTA, stone-700 dark-only theme                                                               | Off-brand vs the app's warm system (no colored glows rule)                                                                                                              | None — visual only                                         |
+| Empty `/blog` page                                                                                                             | Thin content; 301 keeps equity and the "updates" intent lands on `/roadmap`                                                                                             | Q4                                                         |
+| 4 legacy PNGs, DarkCard/DropDown/old Button/SpinnerLoader, MainLayout, SCSS colors, Roboto, `@google-cloud/local-auth`, `sass` | Superseded by the new system; local-auth was never imported                                                                                                             | None                                                       |
+| "Stocklore 2025 ©"                                                                                                            | Stale                                                                                                                                                                   | Becomes dynamic year                                       |
 
 ## 13. Launch checklist (Netlify repoint) & rollback
 

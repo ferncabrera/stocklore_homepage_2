@@ -1,0 +1,312 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import BrowserFrame from "../ui/BrowserFrame.astro";
+
+interface Tab {
+  id: string;
+  label: string;
+  headline: string;
+  copy: string;
+  bullets: string[];
+  anchor: string;
+  mockLabel: string;
+}
+
+const TABS: Tab[] = [
+  {
+    id: "track",
+    label: "Track",
+    headline: "Know exactly what you have — and where",
+    copy: "Every quantity in Stocklore is backed by an append-only movement ledger, so the number on screen is one you can actually trust.",
+    bullets: ["Full movement history behind every product", "Stock by location, with two-sided transfers", "Reorder points with instant low-stock alerts"],
+    anchor: "/features#inventory",
+    mockLabel: "Mock stock-ledger view listing recent inventory movements with quantities and locations.",
+  },
+  {
+    id: "make",
+    label: "Make",
+    headline: "Manufacturing depth without the MRP price tag",
+    copy: "Multi-level BOMs, nested build orders, and automatic component consumption — the depth rivals gate behind $300+/month tiers.",
+    bullets: [
+      "BOMs and sub-assemblies nested up to 6 levels",
+      "Build orders created automatically from a confirmed sale",
+      "Components consumed bottom-up on completion",
+    ],
+    anchor: "/features#manufacturing",
+    mockLabel: "Mock manufacturing-order tree showing a Garden Bench order with nested seat-assembly and frame-assembly sub-orders.",
+  },
+  {
+    id: "buy",
+    label: "Buy",
+    headline: "Purchasing that keeps stock honest",
+    copy: "Purchase orders mirror your sales flow, and receiving writes straight to the ledger — no side spreadsheets.",
+    bullets: ["POs with delivery and payment tracking", "Multiple vendors per product", "Receiving posts stock the moment it lands"],
+    anchor: "/features#purchasing",
+    mockLabel: "Mock purchase order from Maple Supply Co. with line items and a received status.",
+  },
+  {
+    id: "sell",
+    label: "Sell",
+    headline: "From draft to paid, CRA-ready",
+    copy: "Invoices with a real draft → confirmed workflow and Canadian tax built in — GST, HST, and PST as first-class citizens.",
+    bullets: ["Draft → confirmed invoice workflow", "GST/HST/PST + inclusive, exclusive, or non-taxable modes", "Professional PDF export"],
+    anchor: "/features#sales",
+    mockLabel: "Mock invoice for Andrea's Flowers showing a subtotal, HST, total, and a paid status.",
+  },
+  {
+    id: "operate",
+    label: "Operate",
+    headline: "Run the whole team on it",
+    copy: "Roles are enforced on the server for every single route — not just hidden buttons — and your data moves in and out freely.",
+    bullets: ["Admin / edit / view roles, enforced server-side", "CSV & Excel import, PDF & Excel export", "Multiple organizations, realtime notifications"],
+    anchor: "/features#platform",
+    mockLabel: "Mock team-members list showing users with admin, edit, and view role badges.",
+  },
+];
+---
+
+<section id="tour" class="safe-x scroll-mt-20 py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-6xl">
+    <SectionHeading
+      kicker="Product tour"
+      title="One tool for the whole loop"
+      lede="Track it. Make it. Buy it. Sell it. Every piece talks to the same ledger, so nothing falls between systems."
+    />
+
+    <div data-tour class="mt-12">
+      <div role="tablist" aria-label="Product tour" class="scrollbar-none -mx-1 flex snap-x gap-1 overflow-x-auto px-1 sm:justify-center">
+        {
+          TABS.map((tab, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${tab.id}`}
+              aria-controls={`panel-${tab.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              class="min-h-11 shrink-0 snap-start rounded-md px-5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground aria-selected:bg-primary-strong aria-selected:text-primary-foreground aria-selected:shadow-soft"
+            >
+              {tab.label}
+            </button>
+          ))
+        }
+      </div>
+
+      {
+        TABS.map((tab) => (
+          <div
+            role="tabpanel"
+            id={`panel-${tab.id}`}
+            aria-labelledby={`tab-${tab.id}`}
+            tabindex="0"
+            class="mt-8 grid items-center gap-8 rounded-lg lg:grid-cols-2 lg:gap-12"
+          >
+            <div>
+              <h3 class="font-heading text-2xl font-bold">{tab.headline}</h3>
+              <p class="mt-3 text-muted-foreground">{tab.copy}</p>
+              <ul class="mt-5 space-y-2.5">
+                {tab.bullets.map((b) => (
+                  <li class="flex items-start gap-2.5 text-sm">
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-brand"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <a href={tab.anchor} class="mt-6 inline-flex min-h-11 items-center gap-1 text-sm font-medium text-brand hover:underline">
+                More about {tab.label.toLowerCase()}ing with Stocklore
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+
+            <BrowserFrame label={tab.mockLabel}>
+              <div class="p-4 text-xs">
+                {tab.id === "track" && (
+                  <div class="space-y-2">
+                    {[
+                      { doc: "Invoice INV-0107", item: "Garden Bench", delta: "−2", loc: "Main Warehouse" },
+                      { doc: "PO-0042 received", item: "Oak Slats (1m)", delta: "+120", loc: "Main Warehouse" },
+                      { doc: "Transfer TR-0009", item: "Steel Legs", delta: "+8", loc: "Storefront" },
+                      { doc: "Adjustment · recount", item: "Bolts M8", delta: "−3", loc: "Main Warehouse" },
+                    ].map((m) => (
+                      <div class="flex items-center justify-between gap-3 rounded-md border border-border px-3 py-2">
+                        <span class="min-w-0">
+                          <span class="block truncate font-medium">{m.item}</span>
+                          <span class="block truncate text-[11px] text-muted-foreground">
+                            {m.doc} · {m.loc}
+                          </span>
+                        </span>
+                        <span class="shrink-0 tabular-nums font-semibold" style={m.delta.startsWith("+") ? "color: var(--badge-live-fg);" : undefined}>
+                          {m.delta}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {tab.id === "make" && (
+                  <div class="space-y-1.5">
+                    <div class="rounded-md border border-primary/40 bg-lightest/40 px-3 py-2 dark:bg-lightest/20">
+                      <span class="font-semibold">MO-0042 · Garden Bench × 10</span>
+                      <span
+                        class="ml-2 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold"
+                        style="background: var(--badge-progress-bg); color: var(--badge-progress-fg);"
+                      >
+                        In progress
+                      </span>
+                    </div>
+                    <div class="ml-4 border-l-2 border-border pl-3">
+                      <div class="rounded-md border border-border px-3 py-2">
+                        <span class="font-medium">MO-0043 · Seat assembly × 10</span>
+                      </div>
+                      <div class="ml-4 mt-1.5 space-y-1 border-l-2 border-border pl-3 text-muted-foreground">
+                        <p>Oak Slats (1m) × 40</p>
+                        <p>Wood finish × 2 L</p>
+                      </div>
+                    </div>
+                    <div class="ml-4 border-l-2 border-border pl-3">
+                      <div class="rounded-md border border-border px-3 py-2">
+                        <span class="font-medium">MO-0044 · Frame assembly × 10</span>
+                      </div>
+                      <div class="ml-4 mt-1.5 space-y-1 border-l-2 border-border pl-3 text-muted-foreground">
+                        <p>Steel Legs × 20</p>
+                        <p>Bolts M8 × 80</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {tab.id === "buy" && (
+                  <div class="rounded-md border border-border">
+                    <div class="flex items-center justify-between border-b border-border bg-muted px-3 py-2">
+                      <span class="font-semibold">PO-0042 · Maple Supply Co.</span>
+                      <span class="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold" style="background: var(--badge-live-bg); color: var(--badge-live-fg);">
+                        Received
+                      </span>
+                    </div>
+                    <div class="space-y-1 px-3 py-2 text-muted-foreground">
+                      <p class="flex justify-between">
+                        <span>Oak Slats (1m) × 120</span>
+                        <span class="tabular-nums">$342.00</span>
+                      </p>
+                      <p class="flex justify-between">
+                        <span>Steel Legs × 24</span>
+                        <span class="tabular-nums">$518.40</span>
+                      </p>
+                      <p class="flex justify-between border-t border-border pt-1 font-medium text-foreground">
+                        <span>Total</span>
+                        <span class="tabular-nums">$860.40</span>
+                      </p>
+                    </div>
+                  </div>
+                )}
+                {tab.id === "sell" && (
+                  <div class="rounded-md border border-border">
+                    <div class="flex items-center justify-between border-b border-border bg-muted px-3 py-2">
+                      <span class="font-semibold">INV-0107 · Andrea's Flowers</span>
+                      <span class="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold" style="background: var(--badge-live-bg); color: var(--badge-live-fg);">
+                        Paid
+                      </span>
+                    </div>
+                    <div class="space-y-1 px-3 py-2 text-muted-foreground">
+                      <p class="flex justify-between">
+                        <span>Garden Bench × 2</span>
+                        <span class="tabular-nums">$396.00</span>
+                      </p>
+                      <p class="flex justify-between">
+                        <span>HST (ON) 13%</span>
+                        <span class="tabular-nums">$51.48</span>
+                      </p>
+                      <p class="flex justify-between border-t border-border pt-1 font-medium text-foreground">
+                        <span>Total</span>
+                        <span class="tabular-nums">$447.48</span>
+                      </p>
+                    </div>
+                  </div>
+                )}
+                {tab.id === "operate" && (
+                  <div class="space-y-2">
+                    {[
+                      { name: "Fern C.", role: "Admin", tone: "planned" },
+                      { name: "Sam K.", role: "Edit", tone: "live" },
+                      { name: "Alex R.", role: "View", tone: "vision" },
+                    ].map((u) => (
+                      <div class="flex items-center justify-between rounded-md border border-border px-3 py-2.5">
+                        <span class="flex items-center gap-2.5">
+                          <span class="flex h-7 w-7 items-center justify-center rounded-full bg-lightest text-[10px] font-bold text-brand dark:text-secondary">
+                            {u.name.slice(0, 1)}
+                          </span>
+                          <span class="font-medium">{u.name}</span>
+                        </span>
+                        <span
+                          class="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold"
+                          style={`background: var(--badge-${u.tone}-bg); color: var(--badge-${u.tone}-fg);`}
+                        >
+                          {u.role}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </BrowserFrame>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  /* WAI-ARIA APG Tabs pattern: roving tabindex + arrow keys.
+     Without JS, every panel stays visible (stacked, each with its own h3). */
+  document.querySelectorAll<HTMLElement>("[data-tour]").forEach((root) => {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>("[role=tab]")];
+    const panels = [...root.querySelectorAll<HTMLElement>("[role=tabpanel]")];
+
+    const select = (index: number, focus = false) => {
+      tabs.forEach((tab, i) => {
+        tab.setAttribute("aria-selected", String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+      });
+      panels.forEach((panel, i) => {
+        panel.hidden = i !== index;
+      });
+      if (focus) tabs[index].focus();
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(i));
+      tab.addEventListener("keydown", (e) => {
+        const last = tabs.length - 1;
+        let next: number | null = null;
+        if (e.key === "ArrowRight") next = i === last ? 0 : i + 1;
+        else if (e.key === "ArrowLeft") next = i === 0 ? last : i - 1;
+        else if (e.key === "Home") next = 0;
+        else if (e.key === "End") next = last;
+        if (next !== null) {
+          e.preventDefault();
+          select(next, true);
+        }
+      });
+    });
+
+    select(0);
+  });
+</script>

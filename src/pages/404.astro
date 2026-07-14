@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<BaseLayout title="Page not found · Stocklore" description="That page moved or never existed." noindex>
+  <section class="safe-x relative overflow-hidden">
+    <div class="sl-aurora" aria-hidden="true"></div>
+    <div class="sl-grain" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-start py-24 sm:py-32">
+      <p class="text-xs font-semibold uppercase tracking-widest text-brand">404</p>
+      <h1 class="mt-2 font-heading text-4xl font-bold tracking-tight sm:text-5xl">This shelf is empty</h1>
+      <p class="mt-4 max-w-md text-lg text-muted-foreground">The page you're looking for moved or never existed. Our stock ledger has no record of it.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href="/">Back to the homepage</Button>
+        <Button href="/roadmap" variant="outline">See what we're building</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
