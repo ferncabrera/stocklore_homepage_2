@@ -18,19 +18,29 @@ const MOCK_ROWS = [
 
   <div class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:py-28">
     <div class="max-w-xl">
-      <h1 class="sl-animate-in font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-[3.4rem] lg:leading-[1.05]">
+      <a
+        href="#assistant"
+        class="sl-animate-in mb-5 inline-flex min-h-9 items-center gap-2 rounded-md border border-primary/40 bg-card px-3 py-1.5 text-xs font-medium text-brand shadow-soft transition-shadow hover:shadow-lifted"
+      >
+        <span class="rounded-sm px-1.5 py-0.5 text-[10px] font-semibold" style="background: var(--badge-vision-bg); color: var(--badge-vision-fg);">
+          In development
+        </span>
+        The Stocklore assistant — an agent-first platform
+        <span aria-hidden="true">→</span>
+      </a>
+      <h1 class="sl-animate-in font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-[3.4rem] lg:leading-[1.05]" style="animation-delay: 60ms">
         Inventory &amp; manufacturing software that punches
         <span class="sl-scan-mark">above its price</span>
       </h1>
-      <p class="sl-animate-in mt-6 text-lg text-muted-foreground sm:text-xl" style="animation-delay: 90ms">
+      <p class="sl-animate-in mt-6 text-lg text-muted-foreground sm:text-xl" style="animation-delay: 140ms">
         Stocklore gives Canadian small businesses real inventory control, multi-level manufacturing, invoicing, and CRA-ready tax — without enterprise pricing
         or a six-week implementation.
       </p>
-      <div class="sl-animate-in mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" style="animation-delay: 180ms">
+      <div class="sl-animate-in mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" style="animation-delay: 220ms">
         <Button href={SITE.portalUrl} size="lg">Get started — it's free</Button>
         <Button href="#tour" variant="outline" size="lg">See what it does</Button>
       </div>
-      <p class="sl-animate-in mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground" style="animation-delay: 260ms">
+      <p class="sl-animate-in mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground" style="animation-delay: 300ms">
         Free during open beta · No credit card ·
         <span class="inline-flex items-center gap-1.5">
           Canadian-owned <CanadianFlag class="h-3 w-auto" />

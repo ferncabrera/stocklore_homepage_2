@@ -16,6 +16,11 @@ export const FAQ: FaqItem[] = [
       "Most tools at our price point stop at single-level kits — Stocklore does real manufacturing: multi-level bills of materials, nested build orders, and automatic component consumption, alongside ledger-backed inventory, purchasing, and CRA-ready invoicing. And it's self-serve: no sales calls, no implementation projects, no per-module upsells. You can be working with your own data the same hour you sign up.",
   },
   {
+    question: "Is there an AI assistant?",
+    answer:
+      "It's in development — and it's where Stocklore is headed as an agent-first platform. The Stocklore assistant will let you run your back office in plain language — \"draft an invoice for Andrea's Flowers and email her the PDF\" — while you approve every action before it happens. It works within your role and permissions, and ships in phases, starting with answers about your own data. Follow progress on the updates & roadmap page.",
+  },
+  {
     question: "How much does it cost?",
     answer:
       "Stocklore is in open beta and completely free right now. When we launch paid plans, pricing will be transparent and set for small businesses — we'll announce it before the beta ends. In return, we just ask beta users to tell us about bugs and what they'd like built next.",

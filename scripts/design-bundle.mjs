@@ -52,10 +52,12 @@ const heroHtml = inlineFavicon(await grab("main > section:nth-of-type(1)"));
 let panelIdx = 0;
 const tourHtml = (await grab("#tour")).replace(/role="tabpanel"/g, () => (panelIdx++ === 0 ? 'role="tabpanel"' : 'role="tabpanel" hidden'));
 const wedgeHtml = await grab("main > section:nth-of-type(4)");
-const whyHtml = await grab("main > section:nth-of-type(5)");
-const openHtml = await grab("main > section:nth-of-type(6)");
+const useCasesHtml = await grab("main > section:nth-of-type(5)");
+const whyHtml = await grab("main > section:nth-of-type(6)");
+const agentHtml = await grab("#assistant");
+const openHtml = await grab("main > section:nth-of-type(8)");
 const faqHtml = await grab("#faq");
-const ctaHtml = await grab("main > section:nth-of-type(8)");
+const ctaHtml = await grab("main > section:nth-of-type(10)");
 const headerHtml = inlineFavicon(await grab("header"));
 const footerHtml = inlineFavicon(await grab("footer"));
 const frameHtml = await grab("main > section:nth-of-type(1) figure");
@@ -132,8 +134,10 @@ const cards = [
   ["sections/hero-dark.html", "Sections", "Hero — dark", heroHtml, true, ""],
   ["sections/product-tour.html", "Sections", "Tabbed product tour", tourHtml, false, ""],
   ["sections/wedge.html", "Sections", "Manufacturing wedge", wedgeHtml, false, ""],
+  ["sections/use-cases.html", "Sections", "Who it's for", useCasesHtml, false, ""],
   ["sections/why.html", "Sections", "Why Stocklore comparison", whyHtml, false, ""],
-  ["sections/building-open.html", "Sections", "Building in the open + AI vision", openHtml, false, ""],
+  ["sections/agent-first.html", "Sections", "Agent-first announcement", agentHtml, false, ""],
+  ["sections/updates.html", "Sections", "New in Stocklore (updates slide)", openHtml, false, ""],
   ["sections/faq.html", "Sections", "FAQ accordions", faqHtml, false, ""],
   ["sections/cta.html", "Sections", "CTA band + email capture", ctaHtml, false, ""],
 ];
