@@ -8,24 +8,28 @@ const CASES = [
     copy: "Recipes, sub-assemblies, and build orders that consume components automatically — always know what you can build with what's on the shelf.",
     href: "/features#manufacturing",
     icon: "factory",
+    tone: "peri",
   },
   {
     title: "Wholesale & distribution",
     copy: "Multi-location stock, transfers, purchase orders, and reorder alerts keep the buying side as honest as the selling side.",
     href: "/features#inventory",
     icon: "truck",
+    tone: "mint",
   },
   {
     title: "Product retailers",
     copy: "One clean catalog — photos, barcode-ready SKUs, categories — imported from your spreadsheet, invoiced with Canadian tax handled.",
     href: "/features#catalog",
     icon: "store",
+    tone: "peach",
   },
   {
     title: "Services that sell goods",
     copy: "Mix tracked goods and untracked services on the same invoice, with inclusive, exclusive, or non-taxable tax per document.",
     href: "/features#sales",
     icon: "wrench",
+    tone: "butter",
   },
 ];
 ---
@@ -38,11 +42,16 @@ const CASES = [
       lede="Different operations, same need: stock numbers you can trust and paperwork that keeps up."
     />
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- "Swipe to explore" on phones (snap carousel), grid from sm up -->
+    <div class="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3 sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4">
       {
-        CASES.map(({ title, copy, href, icon }) => (
-          <Card interactive class="flex flex-col">
-            <span class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-lightest text-brand dark:text-secondary" aria-hidden="true">
+        CASES.map(({ title, copy, href, icon, tone }) => (
+          <Card interactive class="flex min-w-[78%] snap-start flex-col sm:min-w-0">
+            <span
+              class="inline-flex h-10 w-10 items-center justify-center rounded-md"
+              style={`background: var(--pastel-${tone}); color: var(--pastel-${tone}-ink);`}
+              aria-hidden="true"
+            >
               {icon === "factory" && (
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
                   <path d="M3 21V9l6 4V9l6 4V4h6v17H3z" />

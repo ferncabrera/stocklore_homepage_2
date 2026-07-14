@@ -1,0 +1,14 @@
+---
+/** Slim summate-style promo strip above the header (scrolls away; the header
+ *  below it is the sticky element). */
+import { SITE } from "../../data/site";
+---
+
+<div class="safe-x" style="background: var(--pastel-peri); color: var(--pastel-peri-ink);">
+  <p class="mx-auto flex min-h-9 w-full max-w-6xl flex-wrap items-center justify-center gap-x-2 py-1 text-center text-xs font-medium sm:text-sm">
+    Free during open beta — every feature included.
+    <a href={SITE.portalUrl} class="font-semibold underline underline-offset-2 hover:opacity-80">
+      Start now <span aria-hidden="true">→</span>
+    </a>
+  </p>
+</div>

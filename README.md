@@ -1,9 +1,10 @@
 # Stocklore Homepage
 
 The marketing site for [stocklore.app](https://stocklore.app) — the entry point to the
-Stocklore portal (`portal.stocklore.app`). Static-first Astro 5 on Netlify, styled with the
-Stocklore app's own design tokens (warm paper neutrals, periwinkle `#6268FF`, Rubik +
-Bricolage Grotesque), theme-aware light + dark.
+Stocklore portal (`portal.stocklore.app`). Static-first Astro 5 on Netlify, on a **standalone
+pastel/cream palette** (the periwinkle brand family lifted into summate.io-style pastels —
+deliberately divergent from the app's tokens), Rubik + Bricolage Grotesque, **light-only**.
+Pastel fills always pair with WCAG-AA-verified ink tokens (see `src/styles/global.css`).
 
 > Design & content decisions, SEO strategy, and the validation gates are documented in
 > [`docs/REDESIGN_PLAN.md`](./docs/REDESIGN_PLAN.md).

@@ -9,6 +9,15 @@
 > of gravity is benefit-led product marketing in the style of inFlow and the researched
 > competitors.
 >
+> **Amendment 2 (2026-07-14, summate.io restyle):** per user direction the site moved to a
+> **standalone pastel/cream palette** (periwinkle family lifted into pastels; the app's tokens
+> are deliberately no longer mirrored and never will be), **light-only** (dark mode + toggle
+> removed), a summate-style shell (announcement bar + logo-left/links-centered sticky header),
+> gentle IntersectionObserver scroll reveals, a mobile snap-carousel for use-cases, and three
+> new honest summate-pattern sections (3-step Getting Started, $0 open-beta Pricing, Founder
+> note). Pastel fills always pair with numerically-verified AA ink tokens; the gate now runs
+> light-only (105 checks).
+>
 > **Sources of truth used:** this repo (verified against the live `https://stocklore.app` —
 > content matches); `open_ims` → `docs/roadmap/MASTER_PLAN.md`, `docs/competitive-research/*`
 > (27-competitor study, inFlow head-to-head, "what to ship next" ranking), the app's design

@@ -17,7 +17,8 @@ const BASE = process.argv[2] ?? "http://localhost:8788";
 const SCREENSHOT_DIR = process.env.SCREENSHOT_DIR;
 
 const PAGES = ["/", "/features/", "/roadmap/", "/about/", "/contact/", "/email/", "/404.html"];
-const THEMES = ["light", "dark"];
+// The site is light-only by design decision (see docs/REDESIGN_PLAN.md addendum).
+const THEMES = ["light"];
 
 // REDESIGN_PLAN.md §10.1 device matrix (CSS px)
 const DEVICES = [

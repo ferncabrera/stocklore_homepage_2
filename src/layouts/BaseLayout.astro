@@ -4,6 +4,7 @@ import "@fontsource-variable/bricolage-grotesque";
 import "../styles/global.css";
 
 import BaseHead from "../components/seo/BaseHead.astro";
+import AnnouncementBar from "../components/layout/AnnouncementBar.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 
@@ -21,18 +22,6 @@ interface Props {
 <html lang="en">
   <head>
     <BaseHead {...Astro.props} />
-    <script is:inline>
-      // Theme FOUC guard — must run before first paint.
-      (() => {
-        try {
-          const stored = localStorage.getItem("theme");
-          const dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-          document.documentElement.classList.toggle("dark", dark);
-        } catch {
-          /* no-op: default to light */
-        }
-      })();
-    </script>
   </head>
   <body class="flex min-h-dvh flex-col bg-background font-sans text-foreground">
     <a
@@ -41,10 +30,34 @@ interface Props {
     >
       Skip to content
     </a>
+    <AnnouncementBar />
     <Header />
     <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Gentle scroll reveals: gate on html.js-reveal so content is never
+      // hidden without JS; the first section shows immediately (the hero has
+      // its own load stagger).
+      document.documentElement.classList.add("js-reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -8% 0px" },
+      );
+      document.querySelectorAll("main section").forEach((section, i) => {
+        section.classList.add("sl-reveal");
+        if (i === 0) section.classList.add("is-visible");
+        else io.observe(section);
+      });
+    </script>
   </body>
 </html>

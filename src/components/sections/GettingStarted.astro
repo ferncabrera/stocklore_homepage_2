@@ -1,0 +1,52 @@
+---
+/** summate-style 3-step setup flow — honest to the real onboarding. */
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+import { SITE } from "../../data/site";
+
+const STEPS = [
+  {
+    title: "Create your free account",
+    copy: "No card, no sales call — sign up and you're in.",
+    tone: "peri",
+  },
+  {
+    title: "Bring your products",
+    copy: "Import from CSV or Excel, or seed a demo company to explore with realistic data first.",
+    tone: "peach",
+  },
+  {
+    title: "Run the loop",
+    copy: "Track stock, build assemblies, and send CRA-ready invoices — the same day.",
+    tone: "mint",
+  },
+];
+---
+
+<section class="safe-x py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-6xl">
+    <SectionHeading kicker="Getting started" title="Up and running in an afternoon" lede="Three steps between you and trustworthy stock numbers." />
+
+    <ol class="mt-12 grid gap-6 sm:grid-cols-3">
+      {
+        STEPS.map(({ title, copy, tone }, i) => (
+          <li class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <span
+              class="flex h-10 w-10 items-center justify-center rounded-full font-heading text-lg font-bold"
+              style={`background: var(--pastel-${tone}); color: var(--pastel-${tone}-ink);`}
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
+            <h3 class="mt-4 font-heading text-lg font-bold">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{copy}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-10 flex justify-center">
+      <Button href={SITE.portalUrl} size="lg">Start step one — it's free</Button>
+    </div>
+  </div>
+</section>
