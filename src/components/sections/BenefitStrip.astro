@@ -6,16 +6,19 @@ const BENEFITS = [
     title: "Set up in an afternoon",
     copy: "Self-serve from day one: seed a demo company, import your products from a spreadsheet, and send your first invoice the same day. No sales calls, no implementation fees.",
     icon: "zap",
+    tone: "peri",
   },
   {
     title: "Built for Canadian business",
     copy: "GST, HST, and PST are first-class citizens — agencies, rates, and tax modes ready out of the box. Built by a small Canadian team, for Canadian product businesses.",
     icon: "leaf",
+    tone: "peach",
   },
   {
     title: "More than inventory",
     copy: "Track stock, build assemblies, buy from vendors, and invoice customers in one place — with every stock movement recorded in an auditable ledger.",
     icon: "boxes",
+    tone: "mint",
   },
 ];
 ---
@@ -23,9 +26,13 @@ const BENEFITS = [
 <section class="safe-x">
   <div class="mx-auto grid w-full max-w-6xl gap-6 pb-16 sm:grid-cols-2 lg:grid-cols-3 lg:pb-24">
     {
-      BENEFITS.map(({ title, copy, icon }) => (
+      BENEFITS.map(({ title, copy, icon, tone }) => (
         <Card>
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-lightest text-brand dark:text-secondary" aria-hidden="true">
+          <span
+            class="inline-flex h-10 w-10 items-center justify-center rounded-md"
+            style={`background: var(--pastel-${tone}); color: var(--pastel-${tone}-ink);`}
+            aria-hidden="true"
+          >
             {icon === "zap" && (
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
                 <path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12L13 2z" />

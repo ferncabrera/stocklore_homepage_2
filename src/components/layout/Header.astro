@@ -1,7 +1,6 @@
 ---
 import { SITE } from "../../data/site";
 import Logo from "./Logo.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 import Button from "../ui/Button.astro";
 
 const NAV = [
@@ -16,11 +15,13 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isActive = (href: string) => path === href;
 ---
 
-<header class="safe-x sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
-  <div class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4">
+<!-- summate-style header: logo left, links centered, actions right. Sticky
+     (kept for UX), solid cream surface with a hairline border. -->
+<header class="safe-x sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+  <div class="mx-auto grid h-16 w-full max-w-6xl grid-cols-[1fr_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr]">
     <Logo />
 
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+    <nav class="hidden items-center justify-center gap-1 lg:flex" aria-label="Main">
       {
         NAV.map(({ href, label, soon }) => (
           <a
@@ -45,8 +46,7 @@ const isActive = (href: string) => path === href;
       }
     </nav>
 
-    <div class="flex items-center gap-2">
-      <ThemeToggle />
+    <div class="flex items-center justify-end gap-2">
       <a
         href={SITE.portalUrl}
         class="hidden min-h-11 items-center rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground sm:inline-flex"

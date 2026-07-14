@@ -53,11 +53,14 @@ let panelIdx = 0;
 const tourHtml = (await grab("#tour")).replace(/role="tabpanel"/g, () => (panelIdx++ === 0 ? 'role="tabpanel"' : 'role="tabpanel" hidden'));
 const wedgeHtml = await grab("main > section:nth-of-type(4)");
 const useCasesHtml = await grab("main > section:nth-of-type(5)");
-const whyHtml = await grab("main > section:nth-of-type(6)");
+const stepsHtml = await grab("main > section:nth-of-type(6)");
+const whyHtml = await grab("main > section:nth-of-type(7)");
+const pricingHtml = await grab("#pricing");
 const agentHtml = await grab("#assistant");
-const openHtml = await grab("main > section:nth-of-type(8)");
+const openHtml = await grab("main > section:nth-of-type(10)");
+const founderHtml = await grab("main > section:nth-of-type(11)");
 const faqHtml = await grab("#faq");
-const ctaHtml = await grab("main > section:nth-of-type(10)");
+const ctaHtml = await grab("main > section:nth-of-type(13)");
 const headerHtml = inlineFavicon(await grab("header"));
 const footerHtml = inlineFavicon(await grab("footer"));
 const frameHtml = await grab("main > section:nth-of-type(1) figure");
@@ -122,22 +125,23 @@ ${badge("--badge-vision-bg", "--badge-vision-fg", "In development")}
 </div>`;
 
 const cards = [
-  ["brand/colors.html", "Brand", "Color tokens — light", colorsHtml, false, "900px"],
-  ["brand/colors-dark.html", "Brand", "Color tokens — dark", colorsHtml, true, "900px"],
+  ["brand/colors.html", "Brand", "Color tokens (pastel, light-only)", colorsHtml, false, "900px"],
   ["brand/type.html", "Brand", "Typography", typeHtml, false, "820px"],
   ["components/buttons.html", "Components", "Buttons", buttonsHtml, false, "820px"],
   ["components/badges.html", "Components", "Status badges", badgesHtml, false, "820px"],
   ["components/browser-frame.html", "Components", "BrowserFrame product mock", frameHtml, false, "560px"],
   ["shell/header.html", "Shell", "Site header", headerHtml, false, ""],
   ["shell/footer.html", "Shell", "Site footer", footerHtml, false, ""],
-  ["sections/hero.html", "Sections", "Hero — light", heroHtml, false, ""],
-  ["sections/hero-dark.html", "Sections", "Hero — dark", heroHtml, true, ""],
+  ["sections/hero.html", "Sections", "Hero", heroHtml, false, ""],
   ["sections/product-tour.html", "Sections", "Tabbed product tour", tourHtml, false, ""],
   ["sections/wedge.html", "Sections", "Manufacturing wedge", wedgeHtml, false, ""],
   ["sections/use-cases.html", "Sections", "Who it's for", useCasesHtml, false, ""],
+  ["sections/getting-started.html", "Sections", "3-step getting started", stepsHtml, false, ""],
   ["sections/why.html", "Sections", "Why Stocklore comparison", whyHtml, false, ""],
+  ["sections/pricing.html", "Sections", "Open-beta pricing", pricingHtml, false, ""],
   ["sections/agent-first.html", "Sections", "Agent-first announcement", agentHtml, false, ""],
   ["sections/updates.html", "Sections", "New in Stocklore (updates slide)", openHtml, false, ""],
+  ["sections/founder-note.html", "Sections", "Founder note", founderHtml, false, ""],
   ["sections/faq.html", "Sections", "FAQ accordions", faqHtml, false, ""],
   ["sections/cta.html", "Sections", "CTA band + email capture", ctaHtml, false, ""],
 ];

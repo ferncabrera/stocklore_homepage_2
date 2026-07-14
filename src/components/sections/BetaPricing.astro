@@ -1,0 +1,60 @@
+---
+/** The honest pricing moment — a single open-beta plan, no invented tiers. */
+import Button from "../ui/Button.astro";
+import { SITE } from "../../data/site";
+
+const INCLUDED = [
+  "Every feature, no module gating",
+  "Unlimited products, invoices & purchase orders",
+  "Multi-location stock & transfers",
+  "Multi-level manufacturing (BOMs & build orders)",
+  "CRA-ready GST/HST/PST invoicing",
+  "CSV/Excel import · PDF/Excel export",
+];
+---
+
+<section id="pricing" class="safe-x scroll-mt-20 py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-3xl">
+    <div class="overflow-hidden rounded-xl border border-primary/50 bg-card shadow-lifted">
+      <div class="px-6 pt-8 text-center sm:px-10">
+        <p class="text-xs font-semibold uppercase tracking-widest text-brand">Pricing</p>
+        <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight sm:text-4xl">Free while in open beta</h2>
+        <p class="mt-3 font-heading text-5xl font-bold">
+          $0
+          <span class="text-lg font-medium text-muted-foreground">/ month</span>
+        </p>
+        <p class="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
+          Transparent, small-business pricing will be announced before the beta ends — no bait-and-switch, no per-module surprises.
+        </p>
+      </div>
+
+      <ul class="mx-auto mt-7 grid max-w-xl gap-2.5 px-6 sm:grid-cols-2 sm:px-10">
+        {
+          INCLUDED.map((item) => (
+            <li class="flex items-start gap-2.5 text-sm">
+              <svg
+                class="mt-0.5 h-4 w-4 shrink-0"
+                style="color: var(--pastel-mint-ink);"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-8 px-6 pb-8 text-center sm:px-10">
+        <Button href={SITE.portalUrl} size="lg">Claim your free beta account</Button>
+        <p class="mt-3 text-xs text-muted-foreground">No credit card required.</p>
+      </div>
+    </div>
+  </div>
+</section>
