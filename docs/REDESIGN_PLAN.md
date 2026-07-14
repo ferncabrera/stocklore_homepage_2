@@ -1,8 +1,13 @@
 # Stocklore Homepage Redesign — Implementation Plan
 
-> **Status:** Proposal for approval (2026-07-14). No production code in this commit — per the
-> "plan before coding" rule, implementation starts on sign-off, on this branch
-> (`claude/stocklore-homepage-redesign-had54j`).
+> **Status:** Approved + implemented (2026-07-14). **Post-review amendment (same day):** per
+> user feedback, the "building in the open / shipping cadence" narrative was reduced from a
+> recurring theme to a **single Drizzle-style "New in Stocklore" slide** on the landing page
+> (monthly ships + the road ahead, neutral changelog tone); `/roadmap` was reframed as a plain
+> **Updates & Roadmap** page; an inFlow-style **"Who it's for" use-case section** was added to
+> the landing; and velocity-brag copy was removed from About/FAQ/email/CTA. The site's center
+> of gravity is benefit-led product marketing in the style of inFlow and the researched
+> competitors.
 >
 > **Sources of truth used:** this repo (verified against the live `https://stocklore.app` —
 > content matches); `open_ims` → `docs/roadmap/MASTER_PLAN.md`, `docs/competitive-research/*`

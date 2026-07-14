@@ -36,9 +36,9 @@ export const FAQ: FaqItem[] = [
       "We collect your email address to create your account and a cookie to keep you signed in — that's it. We don't sell data to third parties, and your business data belongs to you. Stocklore is built and operated by a Canadian team.",
   },
   {
-    question: "Can I follow development or request features?",
+    question: "Can I see what's new, or request a feature?",
     answer:
-      "Yes — we build in the open. The roadmap page shows what we've shipped, what we're building now, and what's next. If something you need is missing, tell us at support@stocklore.app; beta feedback genuinely steers the roadmap.",
+      "Yes — the updates & roadmap page lists what's new each month and what's planned ahead. If something you need is missing, tell us at support@stocklore.app; requests from beta users genuinely shape the plan.",
   },
 ];
 

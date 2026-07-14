@@ -1,0 +1,81 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import Card from "../ui/Card.astro";
+
+const CASES = [
+  {
+    title: "Makers & light manufacturers",
+    copy: "Recipes, sub-assemblies, and build orders that consume components automatically — always know what you can build with what's on the shelf.",
+    href: "/features#manufacturing",
+    icon: "factory",
+  },
+  {
+    title: "Wholesale & distribution",
+    copy: "Multi-location stock, transfers, purchase orders, and reorder alerts keep the buying side as honest as the selling side.",
+    href: "/features#inventory",
+    icon: "truck",
+  },
+  {
+    title: "Product retailers",
+    copy: "One clean catalog — photos, barcode-ready SKUs, categories — imported from your spreadsheet, invoiced with Canadian tax handled.",
+    href: "/features#catalog",
+    icon: "store",
+  },
+  {
+    title: "Services that sell goods",
+    copy: "Mix tracked goods and untracked services on the same invoice, with inclusive, exclusive, or non-taxable tax per document.",
+    href: "/features#sales",
+    icon: "wrench",
+  },
+];
+---
+
+<section class="safe-x py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-6xl">
+    <SectionHeading
+      kicker="Who it's for"
+      title="Built for product businesses like yours"
+      lede="Different operations, same need: stock numbers you can trust and paperwork that keeps up."
+    />
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        CASES.map(({ title, copy, href, icon }) => (
+          <Card interactive class="flex flex-col">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-lightest text-brand dark:text-secondary" aria-hidden="true">
+              {icon === "factory" && (
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                  <path d="M3 21V9l6 4V9l6 4V4h6v17H3z" />
+                  <path d="M7 17h2m4 0h2" stroke-linecap="round" />
+                </svg>
+              )}
+              {icon === "truck" && (
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 6h12v11H2zM14 10h4l3 3v4h-7z" />
+                  <circle cx="6.5" cy="17.5" r="1.5" />
+                  <circle cx="17.5" cy="17.5" r="1.5" />
+                </svg>
+              )}
+              {icon === "store" && (
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16l1 5a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-6 0 3 3 0 0 1-3 3 3 3 0 0 1-3-3l1-5z" />
+                  <path d="M5 12v8h14v-8M9 20v-5h6v5" />
+                </svg>
+              )}
+              {icon === "wrench" && (
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a4.5 4.5 0 0 0-6 5.6L3 17.6V21h3.4l5.7-5.7a4.5 4.5 0 0 0 5.6-6L14.5 12l-2.5-2.5 2.7-3.2z" />
+                </svg>
+              )}
+            </span>
+            <h3 class="mt-4 font-heading text-base font-bold">{title}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{copy}</p>
+            <a href={href} class="mt-4 inline-flex min-h-9 items-center gap-1 text-sm font-medium text-brand hover:underline">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>
