@@ -66,6 +66,12 @@ never present unshipped features (including AI) as live.
 
 ## Deploying
 
-`netlify.toml` carries the build command, publish dir, the `/blog` redirect, and cache/security
-headers — it overrides Netlify UI settings. Before the first deploy of a new site, set the
-`GOOGLE_SERVICE_ACCOUNT_JSON` env var (email capture) and smoke-test `POST /api/email`.
+`netlify.toml` carries the build command, publish dir, **Node version pin (22)**, the `/blog`
+redirect, and cache/security headers — it overrides Netlify UI settings. Before the first deploy
+of a new site, set the `GOOGLE_SERVICE_ACCOUNT_JSON` env var (email capture) and smoke-test
+`POST /api/email`.
+
+The build command is `npm install … && npm run build` (not a bare `astro build`): the extra
+`npm install` reconciles Tailwind 4's platform-specific native binary (`@tailwindcss/oxide-*`)
+that `npm ci` can silently skip on CI (npm/cli#4828) — the cause of a "Cannot find native
+binding" failure on Netlify's old Node 18 default. `.nvmrc` pins Node 22 as well.

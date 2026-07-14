@@ -1,8 +1,20 @@
 # Netlify configuration — overrides UI build settings once this repo is connected.
 
 [build]
-  command = "npm run build"
+  # `npm install` before the build reconciles node_modules to the (complete)
+  # lockfile — it defeats the npm optional-dependency bug (npm/cli#4828) where
+  # `npm ci` silently skips Tailwind 4's platform-specific native binary
+  # (@tailwindcss/oxide-linux-x64-gnu) on CI. Cheap + deterministic: the
+  # lockfile already pins every platform, so nothing changes, the missing
+  # optional is just placed before `astro build` needs it.
+  command = "npm install --no-audit --no-fund && npm run build"
   publish = "dist"
+
+[build.environment]
+  # Pin the Node that the site is verified against. Netlify's stale default is
+  # Node 18, where the optional-deps bug reproduces; 22 is current LTS and
+  # matches the environment the build + a11y gate pass on.
+  NODE_VERSION = "22"
 
 # /blog was an empty placeholder page; its "updates" intent now lives on /roadmap.
 [[redirects]]
