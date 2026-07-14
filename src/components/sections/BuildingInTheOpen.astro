@@ -1,0 +1,89 @@
+---
+/**
+ * The single "updates & roadmap" slide on the landing page — a compact,
+ * Drizzle-style changelog moment: recent monthly ships on the left, the road
+ * ahead on the right. The full history + vision (incl. the AI assistant card)
+ * lives on /roadmap; this section deliberately stays small and neutral.
+ */
+import SectionHeading from "../ui/SectionHeading.astro";
+import { shippedByMonth, inProgress, planned, formatMonth } from "../../data/roadmap";
+
+const recentMonths = shippedByMonth().slice(0, 2);
+const upNext = planned.slice(0, 4);
+---
+
+<section class="safe-x border-y border-border bg-card py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-6xl">
+    <SectionHeading
+      kicker="Updates & roadmap"
+      title="New in Stocklore"
+      lede="A monthly changelog and the road ahead — published here, updated as things land."
+    />
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Recently shipped</h3>
+        <div class="mt-4 space-y-6">
+          {
+            recentMonths.map(([month, items]) => (
+              <div class="relative border-l-2 border-border pl-5">
+                <span class="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-primary-strong" aria-hidden="true" />
+                <p class="font-heading font-bold text-brand">{formatMonth(month)}</p>
+                <ul class="mt-2 space-y-1.5">
+                  {items.map((item) => (
+                    <li class="text-sm text-foreground/90">{item.title}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">The road ahead</h3>
+        <ul class="mt-4 space-y-2.5">
+          {
+            inProgress.map((item) => (
+              <li class="flex items-start gap-2.5 text-sm">
+                <span
+                  class="mt-0.5 shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold"
+                  style="background: var(--badge-progress-bg); color: var(--badge-progress-fg);"
+                >
+                  Now building
+                </span>
+                {item.title}
+              </li>
+            ))
+          }
+          {
+            upNext.map((item) => (
+              <li class="flex items-start gap-2.5 text-sm">
+                <span
+                  class="mt-0.5 shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold"
+                  style="background: var(--badge-planned-bg); color: var(--badge-planned-fg);"
+                >
+                  Planned
+                </span>
+                {item.title}
+              </li>
+            ))
+          }
+          <li class="flex items-start gap-2.5 text-sm">
+            <span
+              class="mt-0.5 shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-semibold"
+              style="background: var(--badge-vision-bg); color: var(--badge-vision-fg);"
+            >
+              In development
+            </span>
+            <span> The Stocklore assistant — describe the work, approve the draft, done. </span>
+          </li>
+        </ul>
+
+        <a href="/roadmap" class="mt-6 inline-flex min-h-11 items-center gap-1 text-sm font-medium text-brand hover:underline">
+          See the full updates &amp; roadmap page <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

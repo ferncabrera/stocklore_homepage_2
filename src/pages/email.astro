@@ -1,17 +1,29 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import EmailForm from "../components/astroComponents/emailForm.astro";
-import DarkCard from "../components/astroComponents/DarkCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import Card from "../components/ui/Card.astro";
+import EmailCapture from "../components/sections/EmailCapture.astro";
 ---
 
-<MainLayout>
-  <h2 class="my-12 justify-center flex text-neutral-300 text-4xl">Join our Email List!</h2>
-  <p class="text-center text-xl text-neutral-400">Interested in using the app but still not sure? Send us your email and we will personally reach out!</p>
-  <div class="grid md:grid-cols-3 justify-center mt-12">
-    <div class="col-start-2 flex justify-center">
-      <DarkCard class="w-full mb-24 md:mx-12">
-        <EmailForm />
-      </DarkCard>
+<BaseLayout
+  title="Get Updates · Stocklore"
+  description="Join the Stocklore email list and get product updates as we ship new features — no spam, just what's new."
+>
+  <PageHero
+    kicker="Email list"
+    title="Get product updates"
+    lede="Leave your email and we'll send a short note when new features land — no spam, easy to leave."
+  />
+
+  <div class="safe-x">
+    <div class="mx-auto w-full max-w-xl py-16">
+      <Card class="p-8">
+        <EmailCapture />
+      </Card>
+      <p class="mt-6 text-center text-sm text-muted-foreground">
+        Curious what's new? See the
+        <a href="/roadmap" class="font-medium text-brand hover:underline">updates &amp; roadmap page</a>.
+      </p>
     </div>
   </div>
-</MainLayout>
+</BaseLayout>

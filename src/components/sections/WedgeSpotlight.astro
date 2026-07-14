@@ -1,0 +1,47 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="safe-x border-y border-border bg-card py-16 lg:py-24">
+  <div class="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
+    <div>
+      <SectionHeading align="left" kicker="The manufacturing wedge" title="Assemblies inside assemblies" />
+      <p class="mt-5 text-muted-foreground">
+        Most tools at this weight class stop at single-level kits. Stocklore builds the whole tree: confirm a sale for a finished product and it creates the
+        manufacturing orders for every sub-assembly underneath, consumes components bottom-up, and records every movement in the stock ledger.
+      </p>
+      <p class="mt-4 text-muted-foreground">That's the kind of depth others reserve for their upper tiers — here it's just how the product works.</p>
+    </div>
+
+    <!-- Real nested lists — the diagram is its own accessible description -->
+    <div class="rounded-lg border border-border bg-background p-5 shadow-soft">
+      <p class="pb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">One confirmed sale becomes</p>
+      <ul class="space-y-1.5 text-sm">
+        <li>
+          <div class="rounded-md border border-primary/50 bg-lightest/50 px-4 py-2.5 font-semibold dark:bg-lightest/20">
+            Manufacturing order — Garden Bench × 10
+          </div>
+          <ul class="ml-5 mt-1.5 space-y-1.5 border-l-2 border-border pl-4">
+            <li>
+              <div class="rounded-md border border-border bg-card px-4 py-2 font-medium">Sub-order — Seat assembly × 10</div>
+              <ul class="ml-5 mt-1.5 space-y-1 border-l-2 border-border pl-4 text-muted-foreground">
+                <li>Consumes: Oak slats × 40</li>
+                <li>Consumes: Wood finish × 2 L</li>
+              </ul>
+            </li>
+            <li>
+              <div class="rounded-md border border-border bg-card px-4 py-2 font-medium">Sub-order — Frame assembly × 10</div>
+              <ul class="ml-5 mt-1.5 space-y-1 border-l-2 border-border pl-4 text-muted-foreground">
+                <li>Consumes: Steel legs × 20</li>
+                <li>Consumes: Bolts M8 × 80</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p class="mt-4 border-t border-border pt-3 text-xs text-muted-foreground">
+        Sub-assemblies nest up to 6 levels deep. Completion consumes components bottom-up and yields the finished good — every leg on the ledger.
+      </p>
+    </div>
+  </div>
+</section>

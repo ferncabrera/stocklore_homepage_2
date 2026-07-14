@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import CtaBand from "../components/sections/CtaBand.astro";
+import Badge from "../components/ui/Badge.astro";
+import Card from "../components/ui/Card.astro";
+import { FEATURE_AREAS } from "../data/features";
+---
+
+<BaseLayout
+  title="Features · Stocklore — Inventory & Manufacturing for Canadian SMBs"
+  description="Everything Stocklore does today — ledger-backed inventory, multi-location stock, nested manufacturing orders, purchasing, CRA-ready invoicing — and what's shipping next. Every claim badged honestly."
+>
+  <PageHero
+    kicker="Features"
+    title="Everything in the loop"
+    lede="What Stocklore does today, and what's shipping next. Anything not live yet is badged — we'd rather under-promise than surprise you."
+  />
+
+  <div class="safe-x">
+    <div class="mx-auto w-full max-w-6xl py-16">
+      <!-- Area jump-nav -->
+      <nav aria-label="Feature areas" class="mb-14 flex flex-wrap gap-2">
+        {
+          FEATURE_AREAS.map(({ id, title }) => (
+            <a
+              href={`#${id}`}
+              class="inline-flex min-h-11 items-center rounded-md border border-border bg-card px-4 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+            >
+              {title}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="space-y-20">
+        {
+          FEATURE_AREAS.map(({ id, title, lede, items }) => (
+            <section id={id} aria-labelledby={`${id}-title`} class="scroll-mt-24">
+              <p class="text-xs font-semibold uppercase tracking-widest text-brand">{title}</p>
+              <h2 id={`${id}-title`} class="mt-2 font-heading text-2xl font-bold sm:text-3xl">
+                {lede}
+              </h2>
+              <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {items.map(({ title: itemTitle, blurb, status }) => (
+                  <Card class="flex flex-col gap-2">
+                    <div class="flex items-start justify-between gap-3">
+                      <h3 class="font-heading text-base font-bold">{itemTitle}</h3>
+                      <Badge status={status} class="mt-0.5" />
+                    </div>
+                    <p class="text-sm leading-relaxed text-muted-foreground">{blurb}</p>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      <p class="mt-16 text-sm text-muted-foreground">
+        Missing something you need? <a href="/contact" class="font-medium text-brand hover:underline">Tell us</a>
+        — beta feedback genuinely steers the <a href="/roadmap" class="font-medium text-brand hover:underline">roadmap</a>.
+      </p>
+    </div>
+  </div>
+
+  <CtaBand />
+</BaseLayout>

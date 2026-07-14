@@ -1,20 +1,51 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import Card from "../components/ui/Card.astro";
+import { SITE } from "../data/site";
 ---
 
-<MainLayout>
-  <div class="container my-16 px-5 mx-auto md:px-0">
-    <h2 class="text-4xl text-neutral-300 pb-2">Contact</h2>
-    <hr class="py-2" />
-    <p class="text-xl text-neutral-400">
-      If you would like to inquire about bugs, general information, or other things about the app or project. Please contact us at
-      <a class="text-stocklore-secondary" href="mailto:support@stocklore.app">support@stocklore.app</a>
-    </p>
-    <p class="text-xl text-neutral-400">We are also looking for investors and partners! Please send out an email and we will reply as soon as possible.</p>
-    <h2 class="text-4xl text-neutral-300 mt-24 pb-2">Careers</h2>
-    <hr class="py-2" />
-    <p class="text-xl text-neutral-400">
-      Currently, we are not advertising any jobs or positions. You can still contact us however! There may be opportunities available.
-    </p>
+<BaseLayout
+  title="Contact · Stocklore"
+  description="Questions, bug reports, partnership or investment inquiries — reach the Stocklore team at support@stocklore.app. A human answers."
+>
+  <PageHero kicker="Contact" title="Talk to a human" lede="Bugs, questions, ideas, business — one inbox, real answers." />
+
+  <div class="safe-x">
+    <div class="mx-auto w-full max-w-3xl space-y-6 py-16">
+      <Card>
+        <h2 class="font-heading text-xl font-bold">Support &amp; general inquiries</h2>
+        <p class="mt-3 text-muted-foreground">
+          For bugs, questions about the app, or anything else about the project, email
+          <a href={`mailto:${SITE.supportEmail}`} class="font-medium text-brand hover:underline">{SITE.supportEmail}</a>. Beta feedback is read by the people
+          who build the product — if something's broken or missing, telling us genuinely changes the <a
+            href="/roadmap"
+            class="font-medium text-brand hover:underline">roadmap</a
+          >.
+        </p>
+      </Card>
+
+      <Card>
+        <h2 class="font-heading text-xl font-bold">Partners &amp; investors</h2>
+        <p class="mt-3 text-muted-foreground">
+          We're open to conversations with partners and investors who care about Canadian small business. Reach out at
+          <a href={`mailto:${SITE.supportEmail}`} class="font-medium text-brand hover:underline">{SITE.supportEmail}</a>
+          and we'll reply as soon as possible.
+        </p>
+      </Card>
+
+      <Card>
+        <h2 class="font-heading text-xl font-bold">Careers</h2>
+        <p class="mt-3 text-muted-foreground">
+          We're not advertising any positions right now, but there may be opportunities for the right person — introduce yourself and tell us what you'd want to
+          build.
+        </p>
+      </Card>
+
+      <p class="text-sm text-muted-foreground">
+        Prefer a slower drip? <a href="/email" class="font-medium text-brand hover:underline">Join the email list</a>
+        and get updates as we ship.
+      </p>
+    </div>
   </div>
-</MainLayout>
+</BaseLayout>

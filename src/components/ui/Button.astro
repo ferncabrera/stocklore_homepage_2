@@ -1,0 +1,42 @@
+---
+interface Props {
+  href?: string;
+  type?: "button" | "submit";
+  variant?: "primary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
+  class?: string;
+  id?: string;
+}
+
+const { href, type = "button", variant = "primary", size = "md", class: className = "", id } = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
+
+const variants = {
+  primary: "bg-primary-strong text-primary-foreground shadow-soft hover:shadow-lifted hover:brightness-110",
+  outline: "border border-input bg-card text-foreground hover:bg-muted",
+  ghost: "text-muted-foreground hover:bg-muted hover:text-foreground",
+};
+
+/* Touch targets stay ≥ 44px on every size (min-h-11 = 44px). */
+const sizes = {
+  sm: "min-h-11 px-4 text-sm",
+  md: "min-h-11 px-5 text-sm",
+  lg: "min-h-12 px-7 text-base",
+};
+
+const classes = [base, variants[variant], sizes[size], className];
+---
+
+{
+  href ? (
+    <a {id} {href} class:list={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button {id} {type} class:list={classes}>
+      <slot />
+    </button>
+  )
+}

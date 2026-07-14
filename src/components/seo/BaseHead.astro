@@ -1,0 +1,61 @@
+---
+import { SITE } from "../../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  /** Page-specific JSON-LD blocks (Organization + WebSite are always emitted). */
+  jsonLd?: object[];
+}
+
+const { title, description, ogImage = SITE.ogImage, ogType = "website", noindex = false, jsonLd = [] } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+
+const baseSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+    logo: new URL("/favicon.svg", Astro.site).toString(),
+    email: SITE.supportEmail,
+    foundingLocation: {
+      "@type": "Place",
+      address: { "@type": "PostalAddress", addressCountry: "CA" },
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: SITE.url,
+  },
+];
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex" />}
+<link rel="canonical" href={canonical} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:site_name" content={SITE.name} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+{[...baseSchemas, ...jsonLd].map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}

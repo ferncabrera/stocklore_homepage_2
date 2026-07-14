@@ -1,0 +1,103 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import Card from "../ui/Card.astro";
+
+const check = true;
+const cross = false;
+
+const COLUMNS = [
+  {
+    title: "Spreadsheets",
+    subtitle: "Free, until it isn't",
+    highlight: false,
+    points: [
+      { ok: cross, text: "Manual counts and fragile formulas" },
+      { ok: cross, text: "No audit trail — who changed B7?" },
+      { ok: cross, text: "No roles, no multi-user control" },
+      { ok: cross, text: "Breaks the day you start manufacturing" },
+    ],
+  },
+  {
+    title: "Stocklore",
+    subtitle: "The whole loop, one simple tool",
+    highlight: true,
+    points: [
+      { ok: check, text: "Ledger-backed stock you can trust" },
+      { ok: check, text: "Real multi-level manufacturing" },
+      { ok: check, text: "CRA-ready invoicing built in" },
+      { ok: check, text: "Self-serve — working the same day" },
+    ],
+  },
+  {
+    title: "Legacy ERP",
+    subtitle: "Powerful, at enterprise prices",
+    highlight: false,
+    points: [
+      { ok: cross, text: "Quotes, consultants, per-user fees" },
+      { ok: cross, text: "Six-week (or six-month) implementations" },
+      { ok: cross, text: "Paying for modules you'll never open" },
+      { ok: cross, text: "Depth you need gated behind add-ons" },
+    ],
+  },
+];
+---
+
+<section class="safe-x py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-6xl">
+    <SectionHeading
+      kicker="Why Stocklore"
+      title="Big-system power, small-business price"
+      lede="The SMB tools that matter cost $30–$350 a month — and still gate the good parts. We think that's the opportunity."
+    />
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      {
+        COLUMNS.map(({ title, subtitle, highlight, points }) => (
+          <Card class:list={[highlight && "border-primary shadow-lifted ring-1 ring-primary/30 lg:-my-2 lg:py-8"]}>
+            <h3 class="font-heading text-xl font-bold">{title}</h3>
+            <p class="mt-1 text-sm text-muted-foreground">{subtitle}</p>
+            <ul class="mt-5 space-y-2.5">
+              {points.map(({ ok, text }) => (
+                <li class="flex items-start gap-2.5 text-sm">
+                  {ok ? (
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-brand"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  ) : (
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M6 6l12 12M18 6L6 18" />
+                    </svg>
+                  )}
+                  {text}
+                </li>
+              ))}
+            </ul>
+            {highlight && (
+              <p class="mt-5 rounded-md bg-lightest/60 px-3 py-2.5 text-xs leading-relaxed text-foreground dark:bg-lightest/20">
+                <strong>Free during open beta.</strong> Transparent, small-business pricing will be announced before the beta ends — no bait-and-switch, no
+                per-module surprises.
+              </p>
+            )}
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>

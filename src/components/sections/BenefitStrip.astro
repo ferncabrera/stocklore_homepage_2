@@ -1,0 +1,53 @@
+---
+import Card from "../ui/Card.astro";
+
+const BENEFITS = [
+  {
+    title: "Set up in an afternoon",
+    copy: "Self-serve from day one: seed a demo company, import your products from a spreadsheet, and send your first invoice the same day. No sales calls, no implementation fees.",
+    icon: "zap",
+  },
+  {
+    title: "Built for Canadian business",
+    copy: "GST, HST, and PST are first-class citizens — agencies, rates, and tax modes ready out of the box. Built by a small Canadian team, for Canadian product businesses.",
+    icon: "leaf",
+  },
+  {
+    title: "More than inventory",
+    copy: "Track stock, build assemblies, buy from vendors, and invoice customers in one place — with every stock movement recorded in an auditable ledger.",
+    icon: "boxes",
+  },
+];
+---
+
+<section class="safe-x">
+  <div class="mx-auto grid w-full max-w-6xl gap-6 pb-16 sm:grid-cols-2 lg:grid-cols-3 lg:pb-24">
+    {
+      BENEFITS.map(({ title, copy, icon }) => (
+        <Card>
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-lightest text-brand dark:text-secondary" aria-hidden="true">
+            {icon === "zap" && (
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                <path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12L13 2z" />
+              </svg>
+            )}
+            {icon === "leaf" && (
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l1.5 3 2.8-1.3-.6 3.2 3.3-.3-2.1 2.6 2.9 1.5-2.9 1.2.9 3.1-3.1-.9-.3 3.2L12 16l-2.4 2.3-.3-3.2-3.1.9.9-3.1L4.2 11.7l2.9-1.5-2.1-2.6 3.3.3-.6-3.2L10.5 6 12 3z" />
+                <path d="M12 16v5" />
+              </svg>
+            )}
+            {icon === "boxes" && (
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" />
+                <path d="M12 12l8-4.5M12 12v9M12 12L4 7.5" />
+              </svg>
+            )}
+          </span>
+          <h2 class="mt-4 font-heading text-lg font-bold">{title}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{copy}</p>
+        </Card>
+      ))
+    }
+  </div>
+</section>

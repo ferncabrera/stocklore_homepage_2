@@ -1,0 +1,24 @@
+---
+import Badge from "../ui/Badge.astro";
+import ChatMock from "./ChatMock.astro";
+---
+
+<div class="rounded-lg border border-primary/40 bg-card p-6 shadow-soft sm:p-8">
+  <div class="flex flex-wrap items-center gap-3">
+    <Badge status="vision" />
+    <h3 class="font-heading text-xl font-bold">The Stocklore assistant</h3>
+  </div>
+  <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
+    Where Stocklore is headed: an <strong class="text-foreground">agent-first platform</strong> — describe the work in plain language, review exactly what the assistant
+    prepared, and approve it. Human-in-the-loop by design — it drafts, you decide.
+  </p>
+
+  <div class="mt-6">
+    <ChatMock />
+  </div>
+
+  <p class="mt-5 text-xs text-muted-foreground">
+    In development, shipping in phases — answers about your data first, then drafted actions with your sign-off. It acts with <em>your</em> role and permissions,
+    and never executes anything on its own.
+  </p>
+</div>

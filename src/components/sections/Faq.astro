@@ -1,0 +1,39 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import { FAQ } from "../../data/faq";
+---
+
+<section id="faq" class="safe-x scroll-mt-20 py-16 lg:py-24">
+  <div class="mx-auto w-full max-w-3xl">
+    <SectionHeading kicker="FAQ" title="Frequently asked questions" />
+
+    <div class="mt-10 divide-y divide-border rounded-lg border border-border bg-card shadow-soft">
+      {
+        FAQ.map(({ question, answer }) => (
+          <details class="group px-5">
+            <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 font-medium [&::-webkit-details-marker]:hidden">
+              {question}
+              <svg
+                class="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </summary>
+            <p class="pb-5 text-sm leading-relaxed text-muted-foreground">{answer}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <p class="mt-6 text-center text-sm text-muted-foreground">
+      Still got questions? <a href="/contact" class="font-medium text-brand hover:underline">Reach out</a> — a human answers.
+    </p>
+  </div>
+</section>
