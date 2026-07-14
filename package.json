@@ -12,7 +12,7 @@
     "check:site": "node scripts/site-check.mjs"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.5.10",
+    "@astrojs/netlify": "^6.6.5",
     "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/bricolage-grotesque": "^5.2.10",
     "@fontsource-variable/rubik": "^5.2.8",
@@ -24,7 +24,16 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
     "playwright": "^1.61.1",
-    "prettier": "^3.6.2",
+    "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1"
+  },
+  "comments": {
+    "overrides": "Pin patched versions of build-time-only transitive deps pulled by the @netlify/* adapter tooling (path-traversal / stack-overflow / bounds-check advisories). All stay within their current major so the adapter's APIs are unaffected. esbuild is deliberately NOT overridden — its remaining advisory is dev-server-on-Windows only (irrelevant to Linux CI builds) and forcing its version risks breaking Netlify's function bundler. Revisit when @astrojs/netlify's next major (which targets Astro 7) lands."
+  },
+  "overrides": {
+    "tar": "^7.5.16",
+    "tmp": "^0.2.7",
+    "yaml": "^2.9.0",
+    "uuid": "^11.1.1"
   }
 }
